@@ -17,7 +17,7 @@ public class BackPack {
 
     public void addItemToBackPack(){
         if(backpack != null){
-            System.out.println(backpack.toString());
+           // System.out.println(backpack.toString());
         }
 
         if (tempPocket != null){
@@ -27,7 +27,7 @@ public class BackPack {
                 setTempPocket(null);
             }
         }
-        System.out.println(backpack.toString());
+        //System.out.println(backpack.toString());
     }
 
     public ArrayList<Item> getBackpackContent() { return backpack; }
