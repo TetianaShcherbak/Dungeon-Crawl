@@ -93,7 +93,6 @@ public class MapLoader {
                         case 'g':
                         case 'i':
                         case 'j':
-                        case 'l':
                         case 'm':
                         case 'n':
                         case 'o':
@@ -178,6 +177,10 @@ public class MapLoader {
                         case 'z':
                             cell.setType(CellType.FLOOR);
                             new Skull(cell, 8);
+                            break;
+                        case 'l':
+                            cell.setType(CellType.BEAR);
+                            break;
                     }
                 }
             }

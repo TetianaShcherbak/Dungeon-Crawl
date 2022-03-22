@@ -49,6 +49,7 @@ public class Tiles {
         tileMap.put("skeleton", new Tiles.Tile(29, 6));
         tileMap.put("skull", new Tiles.Tile(1, 15));
         tileMap.put("sword", new Tiles.Tile(0, 31));
+        tileMap.put("bear", new Tiles.Tile(30, 8));
         tileMap.put("wall", new Tiles.Tile(10, 17));
     }
 

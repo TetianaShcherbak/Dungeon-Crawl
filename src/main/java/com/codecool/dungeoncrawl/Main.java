@@ -31,6 +31,7 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
+        System.out.println(map.getWidth());
         GridPane ui = new GridPane();
         ui.setPrefWidth(200);
         ui.setPadding(new Insets(10));
@@ -80,7 +81,7 @@ public class Main extends Application {
     private void refresh() {
         context.setFill(Color.BLACK);
         context.fillRect(0, 0, canvas.getWidth(), canvas.getHeight());
-        for (int x = 0; x < 23; x++) {
+        for (int x = 0; x < 43; x++) {
             for (int y = 0; y < 20; y++) {
                 Player player = map.getPlayer();
                 int playerPositionX = player.getX();
