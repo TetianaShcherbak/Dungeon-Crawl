@@ -16,9 +16,9 @@ public class BackPack {
     }
 
     public void addItemToBackPack(){
-        if(backpack != null){
-           // System.out.println(backpack.toString());
-        }
+//        if(backpack != null){
+//            System.out.println(backpack.toString());
+//        }
 
         if (tempPocket != null){
             if (backpack.size() < size){
@@ -45,7 +45,7 @@ public class BackPack {
 
     public boolean containItemType (String type){
         for (Item backpackItem: backpack){
-            if(backpackItem.getTileName().equals(backpackItem.getTileName())){
+            if(backpackItem.getTileName().equals(type)){
                 return true;
             }
         }
