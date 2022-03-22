@@ -77,13 +77,15 @@ public class Main extends Application {
         for (int x = 0; x < map.getWidth(); x++) {
             for (int y = 0; y < map.getHeight(); y++) {
                 Cell cell = map.getCell(x, y);
-                if (cell.getActor() != null) {
-                    Tiles.drawTile(context, cell.getActor(), x, y);
+                if (cell.getCellContent() != null) {
+                    Tiles.drawTile(this.context, cell.getCellContent(), x, y);
                 } else {
-                    Tiles.drawTile(context, cell, x, y);
+                    Tiles.drawTile(this.context, cell, x, y);
                 }
             }
         }
         healthLabel.setText("" + map.getPlayer().getHealth());
+        //this.healthLabel.setText(this.map.getPlayer().getHealth().makeConcatWithConstants<invokedynamic>(this.map.getPlayer().getHealth()));
+
     }
 }

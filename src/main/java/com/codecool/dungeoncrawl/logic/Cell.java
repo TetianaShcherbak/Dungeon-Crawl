@@ -1,12 +1,16 @@
-package com.codecool.dungeoncrawl.logic;
+//
+// Source code recreated from a .class file by IntelliJ IDEA
+// (powered by FernFlower decompiler)
+//
 
-import com.codecool.dungeoncrawl.logic.actors.Actor;
+package com.codecool.dungeoncrawl.logic;
 
 public class Cell implements Drawable {
     private CellType type;
-    private Actor actor;
+    private Drawable cellContent;
     private GameMap gameMap;
-    private int x, y;
+    private int x;
+    private int y;
 
     Cell(GameMap gameMap, int x, int y, CellType type) {
         this.gameMap = gameMap;
@@ -16,35 +20,34 @@ public class Cell implements Drawable {
     }
 
     public CellType getType() {
-        return type;
+        return this.type;
     }
 
     public void setType(CellType type) {
         this.type = type;
     }
 
-    public void setActor(Actor actor) {
-        this.actor = actor;
+    public void setCellContent(Drawable cellContent) {
+        this.cellContent = cellContent;
     }
 
-    public Actor getActor() {
-        return actor;
+    public Drawable getCellContent() {
+        return this.cellContent;
     }
 
     public Cell getNeighbor(int dx, int dy) {
-        return gameMap.getCell(x + dx, y + dy);
+        return this.gameMap.getCell(this.x + dx, this.y + dy);
     }
 
-    @Override
     public String getTileName() {
-        return type.getTileName();
+        return this.type.getTileName();
     }
 
     public int getX() {
-        return x;
+        return this.x;
     }
 
     public int getY() {
-        return y;
+        return this.y;
     }
 }

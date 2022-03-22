@@ -16,8 +16,8 @@ class ActorTest {
 
         assertEquals(2, player.getX());
         assertEquals(1, player.getY());
-        assertEquals(null, gameMap.getCell(1, 1).getActor());
-        assertEquals(player, gameMap.getCell(2, 1).getActor());
+        assertEquals(null, gameMap.getCell(1, 1).getCellContent());
+        assertEquals(player, gameMap.getCell(2, 1).getCellContent());
     }
 
     @Test
@@ -49,6 +49,6 @@ class ActorTest {
         assertEquals(1, player.getY());
         assertEquals(2, skeleton.getX());
         assertEquals(1, skeleton.getY());
-        assertEquals(skeleton, gameMap.getCell(2, 1).getActor());
+        assertEquals(skeleton, gameMap.getCell(2, 1).getCellContent());
     }
 }

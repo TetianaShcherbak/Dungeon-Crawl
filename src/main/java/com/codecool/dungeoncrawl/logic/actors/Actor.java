@@ -1,6 +1,12 @@
+//
+// Source code recreated from a .class file by IntelliJ IDEA
+// (powered by FernFlower decompiler)
+//
+
 package com.codecool.dungeoncrawl.logic.actors;
 
 import com.codecool.dungeoncrawl.logic.Cell;
+import com.codecool.dungeoncrawl.logic.CellType;
 import com.codecool.dungeoncrawl.logic.Drawable;
 
 public abstract class Actor implements Drawable {
@@ -9,29 +15,32 @@ public abstract class Actor implements Drawable {
 
     public Actor(Cell cell) {
         this.cell = cell;
-        this.cell.setActor(this);
+        this.cell.setCellContent(this);
     }
 
     public void move(int dx, int dy) {
-        Cell nextCell = cell.getNeighbor(dx, dy);
-        cell.setActor(null);
-        nextCell.setActor(this);
-        cell = nextCell;
+        Cell nextCell = this.cell.getNeighbor(dx, dy);
+        if (nextCell.getType() == CellType.FLOOR) {
+            this.cell.setCellContent((Drawable)null);
+            nextCell.setCellContent(this);
+            this.cell = nextCell;
+        }
+
     }
 
     public int getHealth() {
-        return health;
+        return this.health;
     }
 
     public Cell getCell() {
-        return cell;
+        return this.cell;
     }
 
     public int getX() {
-        return cell.getX();
+        return this.cell.getX();
     }
 
     public int getY() {
-        return cell.getY();
+        return this.cell.getY();
     }
 }
