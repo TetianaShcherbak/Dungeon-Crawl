@@ -1,21 +1,29 @@
-28 20
-#############rrrrOOOOOOOOOOO
-#f.........f#rrrr########PPP
-#...s..#s...######......#PPP
-#......#....QBBBBQ.#z.#.#PPP
-#..######...######..##..#PPP
-#...#.s.....#rrrr#..##C.#PPP
-#...........#rrrr#.#..#.#PPP
-#f.........f#rrrr#s.....#PPP
-#####.z######rrrr###..###PPP
-OOOO#.##rrrrrrrrrrr#..#PPPPP
-OOOO#..#rrrrrrrrrrr#..#PPPPP
-OOOO#..#rrrrrrrrr###..###PPP
-OO####.####rrrrrr#....s.#PPP
-OO#S.....q#rrrrrr#.####.#PPP
-OO#.......#rr###r#...C#.#PPP
-OO#....s..#rr#k#r#.####.#PPP
-OO#.####..#rr#.###.#..s.#PPP
-OO#.......#rr#.....#D####PPP
-OO#@.....C#rr#####.#d...#PPP
-OO#########rrrrrr######t#PPP
+45 28
+#############rrrrOOOOOOOOOOOOOOOOOOOOOOOOOOOO
+#f.........f#rrrr########PPP#################
+#...s..#s...######......#PPP#C...s...s.....k#
+#......#...........#z.#.#PPP#f..............#
+#..######...######..##..#PPP########.s...f..#
+#...#.s.....#rrrr#..##C.#PPPPPPPPPP#........#
+#...........#rrrr#.#..#.#PPPPPPPPPP#....s...#
+#f.........f#rrrr#s.....#PPPPP######........#
+#####.z######rrrr###..###PPPPP#...s.....s...#
+OOOO#.##rrrrrrrrrrr#..#########............f#
+OOOO#..#rrrrrrrrrrr#.................A.....C#
+OOOO#..#rrrrrrrrr###..#######################
+OO####.####rrrrrr#....s.#PPPPPPPPPPPPPPPPPPPP
+OO#S.....q#rrrrrr#.####.#PPPPPPPPPPPPPPPPPPPP
+OO#.......#rr###r#...C#.#PPP  l  l PPPPPPPPPP
+OO#....s..#rr#b#r#.####.#PPPPP  P  l  PPPPPPP
+OO#.####..#rr#.###.#..s.#PPPPPPPPPPPPPPPPPPPP
+OO#.......#rr#.....#D####PPPPPPPPPPPPPPPPPPPP
+OO#@.....C#rr#####.#...k#PPPPPPPPPPPPPPPPPPPP
+OO#########rrrrrr######.#PPPPPPPPPPPPPPPPPPPP
+rrrrrrrrrrrrrrrrrrrrrr#.#PPPPPPPPPPPPPPPPPPPP
+rrrrrrrrrrrrrrrrrrrrrr#D#PPPPPPPPPPPPPPPPPPPP
+rrrrrrrrrrrrrr#########.#PPPPPPPPPPPPPPPPPPPP
+rrrrrrrrrrrrrr#f...C....#PPPPPPPPPPPPPPPPPPPP
+rrrrrrrrrrrrrr#..s......#PPPPPPPPPPPPPPPPPPPP
+rrrrrrrrrrrrrr#.......s.f#PPPPPPPPPPPPPPPPPPP
+rrrrrrrrrrrrrr#f..s.....#PPPPPPPPPPPPPPPPPPPP
+rrrrrrrrrrrrrr#########t#PPPPPPPPPPPPPPPPPPPP
