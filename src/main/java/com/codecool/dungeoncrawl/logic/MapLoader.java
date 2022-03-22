@@ -7,6 +7,8 @@ package com.codecool.dungeoncrawl.logic;
 
 import com.codecool.dungeoncrawl.logic.actors.Player;
 import com.codecool.dungeoncrawl.logic.actors.Skeleton;
+import com.codecool.dungeoncrawl.logic.items.*;
+
 import java.io.InputStream;
 import java.util.Scanner;
 
@@ -115,13 +117,15 @@ public class MapLoader {
                             map.setPlayer(new Player(cell));
                             break;
                         case 'A':
-                            cell.setType(CellType.ARROW);
+                            cell.setType(CellType.FLOOR);
+                            new Arrow(cell, 10);
                             break;
                         case 'B':
                             cell.setType(CellType.BRIDGE);
                             break;
                         case 'C':
-                            cell.setType(CellType.CHEESE);
+                            cell.setType(CellType.FLOOR);
+                            new Cheese(cell, 5);
                             break;
                         case 'D':
                             cell.setType(CellType.DOORCLOSE);
@@ -136,10 +140,12 @@ public class MapLoader {
                             cell.setType(CellType.BRIDGESTART);
                             break;
                         case 'S':
-                            cell.setType(CellType.SWORD);
+                            cell.setType(CellType.FLOOR);
+                            new Sword(cell, 10);
                             break;
                         case 'b':
-                            cell.setType(CellType.BOW);
+                            cell.setType(CellType.FLOOR);
+                            new Bow(cell, 8);
                             break;
                         case 'd':
                             cell.setType(CellType.DOOROPEN);
@@ -148,13 +154,16 @@ public class MapLoader {
                             cell.setType(CellType.FIRE);
                             break;
                         case 'h':
-                            cell.setType(CellType.HAMMER);
+                            cell.setType(CellType.FLOOR);
+                            new Hammer(cell, 5);
                             break;
                         case 'k':
-                            cell.setType(CellType.KEY);
+                            cell.setType(CellType.FLOOR);
+                            new Key(cell, 0);
                             break;
                         case 'q':
-                            cell.setType(CellType.HELMET);
+                            cell.setType(CellType.FLOOR);
+                            new Helmet(cell, 5);
                             break;
                         case 'r':
                             cell.setType(CellType.RIVERBODY);
@@ -167,7 +176,8 @@ public class MapLoader {
                             cell.setType(CellType.STAIRS);
                             break;
                         case 'z':
-                            cell.setType(CellType.SKULL);
+                            cell.setType(CellType.FLOOR);
+                            new Skull(cell, 8);
                     }
                 }
             }
