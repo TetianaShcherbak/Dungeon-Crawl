@@ -29,7 +29,8 @@ public enum CellType {
     ARROW("<>"),
     SKULL("skull"),
     FIRE("fire"),
-    OAKS("oaks");
+    OAKS("oaks"),
+    SKELETON("skeleton");
 
     private final String tileName;
 

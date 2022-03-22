@@ -160,7 +160,7 @@ public class MapLoader {
                             cell.setType(CellType.RIVERBODY);
                             break;
                         case 's':
-                            cell.setType(CellType.FLOOR);
+                            cell.setType(CellType.SKELETON);
                             new Skeleton(cell);
                             break;
                         case 't':
