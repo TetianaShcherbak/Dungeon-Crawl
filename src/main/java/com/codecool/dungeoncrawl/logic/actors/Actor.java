@@ -18,29 +18,19 @@ public abstract class Actor implements Drawable {
         this.cell.setCellContent(this);
     }
 
-    public void move(int dx, int dy) {
-        Cell nextCell = this.cell.getNeighbor(dx, dy);
-        if (nextCell.getType() == CellType.FLOOR) {
-            this.cell.setCellContent((Drawable)null);
-            nextCell.setCellContent(this);
-            this.cell = nextCell;
-        }
-
-    }
+    public void move(int dx, int dy) {}
 
     public int getHealth() {
         return this.health;
     }
 
-    public Cell getCell() {
-        return this.cell;
-    }
+    public Cell getCell() { return this.cell; }
+
+    public void setCell(Cell cell) { this.cell = cell; }
 
     public int getX() {
         return this.cell.getX();
     }
 
-    public int getY() {
-        return this.cell.getY();
-    }
+    public int getY() { return this.cell.getY(); }
 }

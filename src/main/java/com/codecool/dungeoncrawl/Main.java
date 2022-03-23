@@ -4,7 +4,7 @@ import com.codecool.dungeoncrawl.logic.AiMovement.NpcMovement;
 import com.codecool.dungeoncrawl.logic.Cell;
 import com.codecool.dungeoncrawl.logic.GameMap;
 import com.codecool.dungeoncrawl.logic.MapLoader;
-import com.codecool.dungeoncrawl.logic.actors.Goblin;
+import com.codecool.dungeoncrawl.logic.actors.Player;
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
@@ -21,10 +21,11 @@ public class Main extends Application {
     NpcMovement ai = new NpcMovement();
     GameMap map = MapLoader.loadMap();
     Canvas canvas = new Canvas(
-            map.getWidth() * Tiles.TILE_WIDTH,
-            map.getHeight() * Tiles.TILE_WIDTH);
+            map.getWidth()/2 * Tiles.TILE_WIDTH,
+            map.getHeight()/2 * Tiles.TILE_WIDTH);
     GraphicsContext context = canvas.getGraphicsContext2D();
     Label healthLabel = new Label();
+    Label infoLabel = new Label();
 
     public static void main(String[] args) {
         launch(args);
@@ -32,6 +33,7 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
+        System.out.println(map.getWidth());
         GridPane ui = new GridPane();
         ui.setPrefWidth(200);
         ui.setPadding(new Insets(10));
@@ -68,28 +70,78 @@ public class Main extends Application {
                 refresh();
                 break;
             case RIGHT:
-                map.getPlayer().move(1,0);
+                map.getPlayer().move(1, 0);
                 refresh();
                 break;
+            case E:
+                map.getPlayer().getBackpack().addItemToBackPack();
+                infoLabel.setText(map.getPlayer().getBackpack().showItemInfo());
+                refresh();
+//            case R:
+//                map.getPlayer().getBackpack().dropLastGottenItem();
+//                infoLabel.setText("Drop");
+//                refresh();
+            case I:
+                infoLabel.setText(map.getPlayer().getBackpack().showBackPackContent());
         }
     }
+
 
     private void refresh() {
         ai.moveNpc();
         context.setFill(Color.BLACK);
         context.fillRect(0, 0, canvas.getWidth(), canvas.getHeight());
-        for (int x = 0; x < map.getWidth(); x++) {
-            for (int y = 0; y < map.getHeight(); y++) {
-                Cell cell = map.getCell(x, y);
-                if (cell.getCellContent() != null) {
-                    Tiles.drawTile(this.context, cell.getCellContent(), x, y);
+        for (int x = 0; x < 43; x++) {
+            for (int y = 0; y < 20; y++) {
+                Player player = map.getPlayer();
+                int playerPositionX = player.getX();
+                int playerPositionY = player.getY();
+                int windowX;
+                int windowY;
+                if (playerPositionX<11 && playerPositionY<6){
+                    windowX = x;
+                    windowY = y;
+                }else if (playerPositionX>34 && playerPositionY<6){
+                    windowX = x+23;
+                    windowY = y;;
+                }else if (playerPositionX<11 && playerPositionY>20){
+                    windowX = x;
+                    windowY = y+14;;
+                }else if (playerPositionX>34 && playerPositionY>20){
+                    windowX = x+23;
+                    windowY = y+14;;
+                } else if (playerPositionX<11){
+                    windowX = x;
+                    windowY = playerPositionY + y - 6;
+                }else if (playerPositionX>34){
+                    windowX = x+23;
+                    windowY = playerPositionY + y - 6;
+                } else if (playerPositionY<6){
+                    windowX = playerPositionX + x - 11;
+                    windowY = y;
+                } else if (playerPositionY>20){
+                    windowX = playerPositionX + x - 11;
+                    windowY = y+14;
                 } else {
-                    Tiles.drawTile(this.context, cell, x, y);
+                    windowX = playerPositionX + x - 11;
+                    windowY = playerPositionY + y - 6;
+                }
+                if (windowY < 0 || windowY >= map.getHeight()) {
+                    Tiles.drawTile(context, () -> "empty", x, y);
+                } else if (windowX < 0 || windowX >= map.getWidth()){
+                    Tiles.drawTile(context, () -> "empty", x, y);
+                }else {
+                    Cell cell = map.getCell(windowX, windowY);
+                    Tiles.drawTile(context, cell, x, y);
+                    if (cell.getCellContent() != null) {
+                        Tiles.drawTile(this.context, cell.getCellContent(), x, y);
+                    } else {
+                        Tiles.drawTile(this.context, cell, x, y);
+                    }
                 }
             }
         }
         healthLabel.setText("" + map.getPlayer().getHealth());
-        //this.healthLabel.setText(this.map.getPlayer().getHealth().makeConcatWithConstants<invokedynamic>(this.map.getPlayer().getHealth()));
-
     }
+
 }

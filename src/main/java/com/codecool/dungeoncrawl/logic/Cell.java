@@ -5,12 +5,15 @@
 
 package com.codecool.dungeoncrawl.logic;
 
+import com.codecool.dungeoncrawl.logic.actors.Actor;
+
 public class Cell implements Drawable {
     private CellType type;
     private Drawable cellContent;
     private GameMap gameMap;
     private int x;
     private int y;
+    private Actor actor;
 
     Cell(GameMap gameMap, int x, int y, CellType type) {
         this.gameMap = gameMap;
@@ -38,6 +41,11 @@ public class Cell implements Drawable {
     public Cell getNeighbor(int dx, int dy) {
         return this.gameMap.getCell(this.x + dx, this.y + dy);
     }
+
+    public Actor getActor() {
+        return this.actor;
+    }
+
 
     public String getTileName() {
         return this.type.getTileName();
