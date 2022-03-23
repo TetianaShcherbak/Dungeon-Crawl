@@ -12,7 +12,7 @@ import com.codecool.dungeoncrawl.logic.items.Item;
 
 
 public class Player extends Actor {
-    private BackPack backpack;
+    public BackPack backpack;
     private String playerView = "naked player";
 
     public Player(Cell cell) {
@@ -71,11 +71,11 @@ public class Player extends Actor {
 
     public void setTileName() {
 
-        if (backpack.containItemType("helm") && backpack.containItemType("sword")){
+        if (backpack.containItemType("helmet") && backpack.containItemType("sword")){
             this.playerView = "player with sword and helm";
             return;
         }
-        if (backpack.containItemType("helm")){
+        if (backpack.containItemType("helmet")){
             this.playerView = "player with helm without sword";
             return;
         }

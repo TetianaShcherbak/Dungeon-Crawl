@@ -48,7 +48,6 @@ public class Tiles {
         tileMap.put("stairs", new Tiles.Tile(2, 6));
         tileMap.put("skeleton", new Tiles.Tile(29, 6));
         tileMap.put("skull", new Tiles.Tile(1, 15));
-        tileMap.put("helmet", new Tiles.Tile(4, 22));
         tileMap.put("goblin", new Tile(26, 2));
         tileMap.put("sword", new Tiles.Tile(0, 31));
         tileMap.put("bear", new Tiles.Tile(30, 8));
