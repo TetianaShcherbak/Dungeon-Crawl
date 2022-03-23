@@ -5,10 +5,7 @@
 
 package com.codecool.dungeoncrawl.logic;
 
-import com.codecool.dungeoncrawl.logic.actors.Goblin;
-import com.codecool.dungeoncrawl.logic.actors.Ghost;
-import com.codecool.dungeoncrawl.logic.actors.Player;
-import com.codecool.dungeoncrawl.logic.actors.Skeleton;
+import com.codecool.dungeoncrawl.logic.actors.*;
 import com.codecool.dungeoncrawl.logic.items.*;
 
 import java.io.InputStream;
@@ -99,6 +96,9 @@ public class MapLoader {
                         case 'i':
                         case 'j':
                         case 'm':
+                            cell.setType(CellType.FLOOR);
+                            map.setMonsterInitial(new Monster(cell));
+                            break;
                         case 'n':
                         case 'o':
                         case 'p':
