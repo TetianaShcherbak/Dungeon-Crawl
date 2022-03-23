@@ -5,6 +5,7 @@ import com.codecool.dungeoncrawl.logic.Cell;
 import com.codecool.dungeoncrawl.logic.GameMap;
 import com.codecool.dungeoncrawl.logic.MapLoader;
 import com.codecool.dungeoncrawl.logic.actors.Player;
+import com.codecool.dungeoncrawl.logic.items.Cheese;
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
@@ -142,7 +143,13 @@ public class Main extends Application {
             inventoryBar.add(new ImageView(new Image("klucz.png", 59, 59, false, false)), 0, 0);
         }
         if (player.backpack.containItemType("cheese")){
-            inventoryBar.add(new ImageView(new Image("ser.png", 59, 59, false, false)), 1, 0);
+            int countOfCheese=0;
+            for (int i=0; i<player.backpack.getBackpackContent().toArray().length; i++){
+                if (player.backpack.getBackpackContent().get(i) instanceof Cheese){
+                    countOfCheese++;
+                }
+            }
+            inventoryBar.add(new ImageView(new Image("ser"+countOfCheese+".png", 59, 59, false, false)), 1, 0);
         }
         if (player.backpack.containItemType("sword")){
             inventoryBar.add(new ImageView(new Image("miecz.png", 59, 59, false, false)), 2, 0);
