@@ -19,6 +19,8 @@ public enum CellType {
     STAIRS("stairs"),
     BEAR("bear"),
     WALL("wall"),
+    SKULL("skull"),
+    ARROW("<>"),
     GHOST("ghost");
 
     private final String tileName;

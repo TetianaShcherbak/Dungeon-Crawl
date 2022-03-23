@@ -113,8 +113,8 @@ public class Main extends Application {
                 Player player = map.getPlayer();
                 int playerPositionX = player.getX();
                 int playerPositionY = player.getY();
-                int windowX;
-                int windowY;
+                int windowX =playerPositionX + x - 11;;
+                int windowY =playerPositionY + y - 6;;
                 if (playerPositionX<11 && playerPositionY<6){
                     windowX = x;
                     windowY = y;
@@ -171,6 +171,12 @@ public class Main extends Application {
         }
         if (player.backpack.containItemType("sword")){
             inventoryBar.add(new ImageView(new Image("miecz.png", 59, 59, false, false)), 2, 0);
+        }
+        if (player.backpack.containItemType("sword1")){
+            inventoryBar.add(new ImageView(new Image("miecz.png", 59, 59, false, false)), 3, 0);
+        }
+        if (player.backpack.containItemType("helmet")){
+            inventoryBar.add(new ImageView(new Image("helmet.png", 59, 59, false, false)), 4, 0);
         }
         ui.add(new Label(new String(String.valueOf(map.getPlayer().getHealth()).getBytes(StandardCharsets.UTF_8))), 1, 0);
     }
