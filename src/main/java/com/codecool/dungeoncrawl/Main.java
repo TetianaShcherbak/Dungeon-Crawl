@@ -97,7 +97,7 @@ public class Main extends Application {
                 }else if (playerPositionX<11 && playerPositionY>23){
                     windowX = x;
                     windowY = y+14;;
-                }else if (playerPositionX>34 && playerPositionY>23){ //do naprawy
+                }else if (playerPositionX>34 && playerPositionY>20){
                     windowX = x+23;
                     windowY = y+14;;
                 } else if (playerPositionX<11){
