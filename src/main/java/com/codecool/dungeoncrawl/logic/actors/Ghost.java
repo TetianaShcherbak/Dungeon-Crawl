@@ -8,12 +8,14 @@ import java.util.List;
 import java.util.Random;
 
 public class Ghost extends Actor{
+
     private Random random = new Random();
+    private List<int[]> moves = new ArrayList<>();
+
     public Ghost(Cell cell) {
         super(cell);
         createMoves();
     }
-    private List<int[]> moves = new ArrayList<>();
 
     @Override
     public void move(int dx, int dy) {
