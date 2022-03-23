@@ -52,9 +52,11 @@ public class Monster extends Ghost {
         int start = cell.getX() + 1;
         int stop = 1;
         while (stop < 4) {
-            if (cell.getGameMap().getCell(start, cell.getY()).getCellContent() instanceof Player) {
-                return true;
-            }
+            try {
+                if (cell.getGameMap().getCell(start, cell.getY()).getCellContent() instanceof Player) {
+                    return true;
+                }
+            } catch (Exception ex){}
             Cell neighbor = cell.getNeighbor(stop, 0);
             if (wallChase(neighbor)) {
                 return false;
@@ -73,9 +75,11 @@ public class Monster extends Ghost {
         int start = cell.getX() - 1;
         int stop = 1;
         while (stop < 4) {
-            if (cell.getGameMap().getCell(start, cell.getY()).getCellContent() instanceof Player) {
-                return true;
-            }
+            try {
+                if (cell.getGameMap().getCell(start, cell.getY()).getCellContent() instanceof Player) {
+                    return true;
+                }
+            }catch (Exception ex){}
             Cell neighbor = cell.getNeighbor(-stop, 0);
             if (wallChase(neighbor)) {
                 return false;
