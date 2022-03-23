@@ -31,6 +31,21 @@ public class BackPack {
         //System.out.println(backpack.toString());
     }
 
+    public Item getItemFromBackpack(String type){
+        if(containItemType(type)){
+            for(Item item: backpack){
+                if(item.getTileName().equals(type)){
+                    return item;
+                }
+            }
+        }
+        return null;
+    }
+
+    public void removeItem(Item item){
+        backpack.remove(item);
+    }
+
 //    public void dropLastGottenItem(){
 //        Item lastItem = backpack.get(backpack.size() - 1);
 //        if (isPlayerOnItemPosition(lastItem)){
@@ -63,6 +78,9 @@ public class BackPack {
     }
 
     public boolean containItemType (String type){
+        if (backpack == null){
+            return false;
+        }
         for (Item backpackItem: backpack){
             if(backpackItem.getTileName().equals(type)){
                 return true;
