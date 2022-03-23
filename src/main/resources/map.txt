@@ -24,6 +24,6 @@ rrrrrrrrrrrrrrrrrrrrrr#D#PPPPPPPPPPPPPPPPPPPP
 rrrrrrrrrrrrrr#########.#PPPPPPPPPPPPPPPPPPPP
 rrrrrrrrrrrrrr#f...C....#PPPPPPPPPPPPPPPPPPPP
 rrrrrrrrrrrrrr#..s......#PPPPPPPPPPPPPPPPPPPP
-rrrrrrrrrrrrrr#.......s.f#PPPPPPPPPPPPPPPPPPP
+rrrrrrrrrrrrrr#......s.f#PPPPPPPPPPPPPPPPPPPP
 rrrrrrrrrrrrrr#f..s.....#PPPPPPPPPPPPPPPPPPPP
 rrrrrrrrrrrrrr#########t#PPPPPPPPPPPPPPPPPPPP
