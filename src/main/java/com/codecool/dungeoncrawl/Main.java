@@ -24,6 +24,7 @@ public class Main extends Application {
             map.getHeight()/2 * Tiles.TILE_WIDTH);
     GraphicsContext context = canvas.getGraphicsContext2D();
     Label healthLabel = new Label();
+    Label infoLabel = new Label();
 
     public static void main(String[] args) {
         launch(args);
@@ -73,7 +74,14 @@ public class Main extends Application {
                 break;
             case E:
                 map.getPlayer().getBackpack().addItemToBackPack();
+                infoLabel.setText(map.getPlayer().getBackpack().showItemInfo());
                 refresh();
+//            case R:
+//                map.getPlayer().getBackpack().dropLastGottenItem();
+//                infoLabel.setText("Drop");
+//                refresh();
+            case I:
+                infoLabel.setText(map.getPlayer().getBackpack().showBackPackContent());
         }
     }
 
@@ -133,6 +141,5 @@ public class Main extends Application {
         }
         healthLabel.setText("" + map.getPlayer().getHealth());
     }
-
 
 }
