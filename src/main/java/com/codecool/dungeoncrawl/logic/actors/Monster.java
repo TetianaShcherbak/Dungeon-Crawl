@@ -3,7 +3,7 @@ package com.codecool.dungeoncrawl.logic.actors;
 import com.codecool.dungeoncrawl.logic.Cell;
 import com.codecool.dungeoncrawl.logic.CellType;
 
-public class Monster extends Ghost {
+public class Monster extends Actor {
     public Monster(Cell cell) {
         super(cell);
     }

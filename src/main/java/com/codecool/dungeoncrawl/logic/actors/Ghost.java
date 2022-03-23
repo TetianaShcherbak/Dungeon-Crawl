@@ -10,7 +10,7 @@ import java.util.Random;
 public class Ghost extends Actor{
 
     private Random random = new Random();
-    protected List<int[]> moves = new ArrayList<>();
+    private List<int[]> moves = new ArrayList<>();
 
     public Ghost(Cell cell) {
         super(cell);
