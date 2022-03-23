@@ -18,8 +18,8 @@ import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 public class Main extends Application {
-    NpcMovement ai = new NpcMovement();
     GameMap map = MapLoader.loadMap();
+    NpcMovement ai = new NpcMovement(map);
     Canvas canvas = new Canvas(
             map.getWidth()/2 * Tiles.TILE_WIDTH,
             map.getHeight()/2 * Tiles.TILE_WIDTH);

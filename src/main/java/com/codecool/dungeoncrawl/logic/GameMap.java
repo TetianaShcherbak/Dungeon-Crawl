@@ -45,7 +45,7 @@ public class GameMap {
 
 
     public void setGoblinInitial(Goblin goblin){
-        Goblin.appendGoblins(goblin);
+        goblins.add(goblin);
     }
 
     public void setGhostInitial(Ghost ghost){
@@ -60,4 +60,11 @@ public class GameMap {
         return this.height;
     }
 
+    public ArrayList<Goblin> getGoblins() {
+        return goblins;
+    }
+
+    public ArrayList<Ghost> getGhosts() {
+        return ghosts;
+    }
 }
