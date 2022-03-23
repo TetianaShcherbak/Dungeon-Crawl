@@ -91,12 +91,27 @@ public class Main extends Application {
                 if (playerPositionX<11 && playerPositionY<6){
                     windowX = x;
                     windowY = y;
+                }else if (playerPositionX>34 && playerPositionY<6){
+                    windowX = x+23;
+                    windowY = y;;
+                }else if (playerPositionX<11 && playerPositionY>23){
+                    windowX = x;
+                    windowY = y+14;;
+                }else if (playerPositionX>34 && playerPositionY>23){
+                    windowX = x+23;
+                    windowY = y+14;;
                 } else if (playerPositionX<11){
                     windowX = x;
+                    windowY = playerPositionY + y - 6;
+                }else if (playerPositionX>34){
+                    windowX = x+23;
                     windowY = playerPositionY + y - 6;
                 } else if (playerPositionY<6){
                     windowX = playerPositionX + x - 11;
                     windowY = y;
+                } else if (playerPositionY>20){
+                    windowX = playerPositionX + x - 11;
+                    windowY = y+14;
                 } else {
                     windowX = playerPositionX + x - 11;
                     windowY = playerPositionY + y - 6;
