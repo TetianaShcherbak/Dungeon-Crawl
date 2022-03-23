@@ -98,8 +98,11 @@ public class Main extends Application {
 //                refresh();
             case I:
                 infoLabel.setText(map.getPlayer().getBackpack().showBackPackContent());
+                break;
             case K:
                 map.getPlayer().openDoor();
+                refresh();
+                break;
         }
     }
 
@@ -113,8 +116,8 @@ public class Main extends Application {
                 Player player = map.getPlayer();
                 int playerPositionX = player.getX();
                 int playerPositionY = player.getY();
-                int windowX =playerPositionX + x - 11;;
-                int windowY =playerPositionY + y - 6;;
+                int windowX;
+                int windowY;
                 if (playerPositionX<11 && playerPositionY<6){
                     windowX = x;
                     windowY = y;

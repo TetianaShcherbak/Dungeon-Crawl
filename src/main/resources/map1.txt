@@ -3,7 +3,7 @@ PPPPPPPPPPPPPPPPPPP########OOOOOOOOOOOOOOOOOO
 PPPPPPPPPPPPPPPPPP#......C#OOOOOOOOOOOOOOOOOO
 PPPPPPPPPPPPPPPPPPP###..###OOOOOOOOOOOOOOOOOO
 ###################  #..#OOOOOOOOOOOOOOOOOOOO
-#C...............f#  #..#OOOOOOOOOOOOOOOOOOOO
+#C.......@.......f#  #..#OOOOOOOOOOOOOOOOOOOO
 #.........###.....####..##########OOOOOOOOOOO
 #....s......#...................z###########O
 #...........A......########................#O
@@ -19,7 +19,7 @@ OOOOOOOOOOOOOOO#..#rrrrrrrrrrrrrrrrrrrr#..#rr
 OOOOOOOOOOOOOOO#..######################..#rr
 OOOOOOOOOOOOOOO#..........................#rr
 OOOOOOOOOOOOOOO#f..........s.............f#rr
-OOOOOOOOOOOOOOO##################.@..######rr
+OOOOOOOOOOOOOOO##################....######rr
 OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO#....#rrrrrrr
 OOOOOOOOO###########OOOOOOOOOOOO#....#rrrrrrr
 ##########f........#OOOOOOOOOOOO#....#rrrrrrr
