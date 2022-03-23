@@ -5,6 +5,7 @@
 
 package com.codecool.dungeoncrawl.logic;
 
+import com.codecool.dungeoncrawl.logic.actors.Goblin;
 import com.codecool.dungeoncrawl.logic.actors.Player;
 import com.codecool.dungeoncrawl.logic.actors.Skeleton;
 import java.io.InputStream;
@@ -101,6 +102,9 @@ public class MapLoader {
                         case 'w':
                         case 'x':
                         case 'y':
+                            cell.setType(CellType.FLOOR);
+                            map.setGoblinInitial(new Goblin(cell));
+                            break;
                         default:
                             char var10002 = line.charAt(x);
                             throw new RuntimeException("Unrecognized character: '" + var10002 + "'");

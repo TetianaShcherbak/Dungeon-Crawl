@@ -50,6 +50,7 @@ public class Tiles {
         tileMap.put("<>", new Tiles.Tile(0, 7));
         tileMap.put("skull", new Tiles.Tile(1, 15));
         tileMap.put("helmet", new Tiles.Tile(4, 22));
+        tileMap.put("goblin", new Tile(26, 2));
     }
 
     public static class Tile {

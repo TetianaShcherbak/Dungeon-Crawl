@@ -5,13 +5,18 @@
 
 package com.codecool.dungeoncrawl.logic;
 
+import com.codecool.dungeoncrawl.logic.actors.Goblin;
 import com.codecool.dungeoncrawl.logic.actors.Player;
+
+import java.util.ArrayList;
 
 public class GameMap {
     private int width;
     private int height;
     private Cell[][] cells;
+    private Goblin goblin;
     private Player player;
+    private ArrayList<Goblin> goblins = new ArrayList<>();
 
     public GameMap(int width, int height, CellType defaultCellType) {
         this.width = width;
@@ -38,6 +43,20 @@ public class GameMap {
         return this.player;
     }
 
+    public void setGoblin(Goblin goblin){
+        this.goblin = goblin;
+    }
+
+    public void setGoblinInitial(Goblin goblin){
+        this.goblin = goblin;
+        Goblin.appendGoblins(goblin);
+    }
+
+    public Goblin getGoblin(){
+        return this.goblin;
+    }
+
+
     public int getWidth() {
         return this.width;
     }
@@ -45,4 +64,5 @@ public class GameMap {
     public int getHeight() {
         return this.height;
     }
+
 }
