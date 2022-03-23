@@ -6,6 +6,7 @@
 package com.codecool.dungeoncrawl.logic;
 
 import com.codecool.dungeoncrawl.logic.actors.Goblin;
+import com.codecool.dungeoncrawl.logic.actors.Ghost;
 import com.codecool.dungeoncrawl.logic.actors.Player;
 
 import java.util.ArrayList;
@@ -14,9 +15,9 @@ public class GameMap {
     private int width;
     private int height;
     private Cell[][] cells;
-    private Goblin goblin;
     private Player player;
     private ArrayList<Goblin> goblins = new ArrayList<>();
+    private ArrayList<Ghost> ghosts = new ArrayList<>();
 
     public GameMap(int width, int height, CellType defaultCellType) {
         this.width = width;
@@ -28,7 +29,6 @@ public class GameMap {
                 this.cells[x][y] = new Cell(this, x, y, defaultCellType);
             }
         }
-
     }
 
     public Cell getCell(int x, int y) {
@@ -43,19 +43,14 @@ public class GameMap {
         return this.player;
     }
 
-    public void setGoblin(Goblin goblin){
-        this.goblin = goblin;
-    }
 
     public void setGoblinInitial(Goblin goblin){
-        this.goblin = goblin;
         Goblin.appendGoblins(goblin);
     }
 
-    public Goblin getGoblin(){
-        return this.goblin;
+    public void setGhostInitial(Ghost ghost){
+        ghosts.add(ghost);
     }
-
 
     public int getWidth() {
         return this.width;
