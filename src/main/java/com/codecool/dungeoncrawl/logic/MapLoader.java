@@ -12,11 +12,14 @@ import java.io.InputStream;
 import java.util.Scanner;
 
 public class MapLoader {
+    private static int flag = 0;
     public MapLoader() {
     }
 
-    public static GameMap loadMap(String mapName) {
-        InputStream is = MapLoader.class.getResourceAsStream(mapName);
+    public static GameMap loadMap() {
+        String[] maps = {"/map.txt", "/map1.txt", "/map2.txt"};
+        InputStream is = MapLoader.class.getResourceAsStream(maps[flag]);
+        flag++;
         Scanner scanner = new Scanner(is);
         int width = scanner.nextInt();// /2
         int height = scanner.nextInt();// /2

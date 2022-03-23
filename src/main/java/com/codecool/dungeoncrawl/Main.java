@@ -24,7 +24,7 @@ import java.nio.charset.StandardCharsets;
 
 public class Main extends Application {
 //    NpcMovement ai = new NpcMovement();
-    GameMap map = MapLoader.loadMap("/map.txt");
+    GameMap map = MapLoader.loadMap();
     NpcMovement ai = new NpcMovement(map);
     Canvas canvas = new Canvas(
             map.getWidth()/2 * Tiles.TILE_WIDTH,
@@ -131,6 +131,10 @@ public class Main extends Application {
             }
         }
         showInventaryBar();
+        if (GameMap.nextMap()){
+            map = MapLoader.loadMap();
+            refresh();
+        }
         ui.add(new Label(new String(String.valueOf(map.getPlayer().getHealth()).getBytes(StandardCharsets.UTF_8))), 1, 0);
     }
 
