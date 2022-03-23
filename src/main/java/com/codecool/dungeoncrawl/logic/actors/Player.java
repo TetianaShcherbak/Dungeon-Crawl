@@ -23,12 +23,42 @@ public class Player extends Actor {
     @Override
     public void move(int dx, int dy) {
         Cell nextCell = this.getCell().getNeighbor(dx, dy);
-        if ((nextCell.getType() == CellType.FLOOR)) {
+        if ((nextCell.getType() == CellType.FLOOR) ||
+                (nextCell.getType() == CellType.DOOROPEN)) {
             updateBackPackTempPocketAccordingToMove(nextCell);
             this.getCell().setCellContent(null);
             nextCell.setCellContent(this);
             this.setCell(nextCell);
         }
+    }
+
+    public void openDoor(){
+        if (backpack.getItemFromBackpack("key") == null) {
+            return;
+        }
+        if (getDoorCellIfCloseTo() == null){ return; }
+
+        Item key = backpack.getItemFromBackpack("key");
+        backpack.removeItem(key);
+        getDoorCellIfCloseTo().setType(CellType.DOOROPEN);
+    }
+
+    private Cell getDoorCellIfCloseTo(){
+        Cell currentPlayerCell = this.getCell();
+
+        if(currentPlayerCell.getNeighbor(0,-1).getType() == CellType.DOORCLOSE) { // upDirectionCell
+            return currentPlayerCell.getNeighbor(0,-1);
+        }
+        if(currentPlayerCell.getNeighbor(0,1).getType() == CellType.DOORCLOSE) {  // downDirectionCell
+            return currentPlayerCell.getNeighbor(0,1);
+        }
+        if (currentPlayerCell.getNeighbor(-1,0).getType() == CellType.DOORCLOSE) { // leftDirectionCell
+            return currentPlayerCell.getNeighbor(-1,0);
+        }
+        if(currentPlayerCell.getNeighbor(1,0).getType() == CellType.DOORCLOSE) { // rightDirectionCell
+            return currentPlayerCell.getNeighbor(1,0);
+        }
+        return null;
     }
 
     private void updateBackPackTempPocketAccordingToMove(Cell nextCell){

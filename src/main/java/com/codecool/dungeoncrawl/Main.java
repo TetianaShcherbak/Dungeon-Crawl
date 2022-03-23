@@ -96,9 +96,10 @@ public class Main extends Application {
 //                map.getPlayer().getBackpack().dropLastGottenItem();
 //                infoLabel.setText("Drop");
 //                refresh();
-//            case I:
-//                infoLabel.setText(map.getPlayer().getBackpack().showBackPackContent());
-//                break;
+            case I:
+                infoLabel.setText(map.getPlayer().getBackpack().showBackPackContent());
+            case K:
+                map.getPlayer().openDoor();
         }
     }
 
