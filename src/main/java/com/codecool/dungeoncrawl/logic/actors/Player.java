@@ -25,7 +25,6 @@ public class Player extends Actor {
         Cell nextCell = this.getCell().getNeighbor(dx, dy);
         if ((nextCell.getType() == CellType.FLOOR)) {
             updateBackPackTempPocketAccordingToMove(nextCell);
-
             this.getCell().setCellContent(null);
             nextCell.setCellContent(this);
             this.setCell(nextCell);

@@ -6,6 +6,7 @@
 package com.codecool.dungeoncrawl.logic;
 
 import com.codecool.dungeoncrawl.logic.actors.Goblin;
+import com.codecool.dungeoncrawl.logic.actors.Ghost;
 import com.codecool.dungeoncrawl.logic.actors.Player;
 import com.codecool.dungeoncrawl.logic.actors.Skeleton;
 import com.codecool.dungeoncrawl.logic.items.*;
@@ -92,6 +93,9 @@ public class MapLoader {
                         case 'c':
                         case 'e':
                         case 'g':
+                            cell.setType(CellType.GHOST);
+                            map.setGhostInitial(new Ghost(cell));
+                            break;
                         case 'i':
                         case 'j':
                         case 'm':
