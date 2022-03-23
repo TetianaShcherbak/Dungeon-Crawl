@@ -23,7 +23,7 @@ import java.nio.charset.StandardCharsets;
 
 public class Main extends Application {
 //    NpcMovement ai = new NpcMovement();
-    GameMap map = MapLoader.loadMap();
+    GameMap map = MapLoader.loadMap("/map.txt");
     NpcMovement ai = new NpcMovement(map);
     Canvas canvas = new Canvas(
             map.getWidth()/2 * Tiles.TILE_WIDTH,
@@ -92,13 +92,6 @@ public class Main extends Application {
                 infoLabel.setText(map.getPlayer().getBackpack().showItemInfo());
                 refresh();
                 break;
-//            case R:
-//                map.getPlayer().getBackpack().dropLastGottenItem();
-//                infoLabel.setText("Drop");
-//                refresh();
-            case I:
-                infoLabel.setText(map.getPlayer().getBackpack().showBackPackContent());
-                break;
             case K:
                 map.getPlayer().openDoor();
                 refresh();
@@ -116,36 +109,10 @@ public class Main extends Application {
                 Player player = map.getPlayer();
                 int playerPositionX = player.getX();
                 int playerPositionY = player.getY();
-                int windowX;
-                int windowY;
-                if (playerPositionX<11 && playerPositionY<6){
-                    windowX = x;
-                    windowY = y;
-                }else if (playerPositionX>34 && playerPositionY<6){
-                    windowX = x+23;
-                    windowY = y;;
-                }else if (playerPositionX<11 && playerPositionY>20){
-                    windowX = x;
-                    windowY = y+14;;
-                }else if (playerPositionX>34 && playerPositionY>20){
-                    windowX = x+23;
-                    windowY = y+14;;
-                } else if (playerPositionX<11){
-                    windowX = x;
-                    windowY = playerPositionY + y - 6;
-                }else if (playerPositionX>34){
-                    windowX = x+23;
-                    windowY = playerPositionY + y - 6;
-                } else if (playerPositionY<6){
-                    windowX = playerPositionX + x - 11;
-                    windowY = y;
-                } else if (playerPositionY>20){
-                    windowX = playerPositionX + x - 11;
-                    windowY = y+14;
-                } else {
-                    windowX = playerPositionX + x - 11;
-                    windowY = playerPositionY + y - 6;
-                }
+                int windowX=0;
+                int windowY=0;
+                windowX = cameraStopMove(playerPositionX, playerPositionY, x, y, windowX, windowY)[0];
+                windowY = cameraStopMove(playerPositionX, playerPositionY, x, y, windowX, windowY)[1];
                 if (windowY < 0 || windowY >= map.getHeight()) {
                     Tiles.drawTile(context, () -> "empty", x, y);
                 } else if (windowX < 0 || windowX >= map.getWidth()){
@@ -162,6 +129,11 @@ public class Main extends Application {
 
             }
         }
+        showInventaryBar();
+        ui.add(new Label(new String(String.valueOf(map.getPlayer().getHealth()).getBytes(StandardCharsets.UTF_8))), 1, 0);
+    }
+
+    private void showInventaryBar(){
         Player player = map.getPlayer();
         for (int i=0; i<12; i++){
             inventoryBar.add(new ImageView(new Image("puste-miejsce.png", 59, 59, false, false)), i, 0);
@@ -181,6 +153,37 @@ public class Main extends Application {
         if (player.backpack.containItemType("helmet")){
             inventoryBar.add(new ImageView(new Image("helmet.png", 59, 59, false, false)), 4, 0);
         }
-        ui.add(new Label(new String(String.valueOf(map.getPlayer().getHealth()).getBytes(StandardCharsets.UTF_8))), 1, 0);
+    }
+
+    private int[] cameraStopMove(int playerPositionX, int playerPositionY, int x, int y, int windowX, int windowY){
+        if (playerPositionX<11 && playerPositionY<6){
+            windowX = x;
+            windowY = y;
+        }else if (playerPositionX>34 && playerPositionY<6){
+            windowX = x+23;
+            windowY = y;;
+        }else if (playerPositionX<11 && playerPositionY>20){
+            windowX = x;
+            windowY = y+14;;
+        }else if (playerPositionX>34 && playerPositionY>20){
+            windowX = x+23;
+            windowY = y+14;;
+        } else if (playerPositionX<11){
+            windowX = x;
+            windowY = playerPositionY + y - 6;
+        }else if (playerPositionX>34){
+            windowX = x+23;
+            windowY = playerPositionY + y - 6;
+        } else if (playerPositionY<6){
+            windowX = playerPositionX + x - 11;
+            windowY = y;
+        } else if (playerPositionY>20){
+            windowX = playerPositionX + x - 11;
+            windowY = y+14;
+        } else {
+            windowX = playerPositionX + x - 11;
+            windowY = playerPositionY + y - 6;
+        }
+        return new int[]{windowX, windowY};
     }
 }
