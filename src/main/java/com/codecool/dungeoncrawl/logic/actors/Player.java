@@ -100,8 +100,15 @@ public class Player extends Actor {
     }
 
     public void setTileName() {
-
-        if (backpack.containItemType("helmet") && backpack.containItemType("sword")){
+        if (backpack.containItemType("helmet") && backpack.containItemType("sword") && backpack.containItemType("sword1")){
+            this.playerView = "player with two sword and helm";
+            return;
+        }
+        if (backpack.containItemType("sword") && backpack.containItemType("sword1")){
+            this.playerView = "player with two sword";
+            return;
+        }
+        if (backpack.containItemType("helmet") && backpack.containItemType("sword") || backpack.containItemType("helmet") && backpack.containItemType("sword1")){
             this.playerView = "player with sword and helm";
             return;
         }

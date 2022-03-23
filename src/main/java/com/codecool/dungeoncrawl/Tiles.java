@@ -26,7 +26,6 @@ public class Tiles {
 
     static {
         tileMap.put("<>", new Tiles.Tile(0, 7));
-        tileMap.put("bow", new Tiles.Tile(8, 28));
         tileMap.put("bridge", new Tiles.Tile(16, 5));
         tileMap.put("bridgestart", new Tiles.Tile(15, 5));
         tileMap.put("cheese", new Tiles.Tile(18, 28));
@@ -35,7 +34,6 @@ public class Tiles {
         tileMap.put("empty", new Tiles.Tile(0, 0));
         tileMap.put("fire", new Tiles.Tile(4, 15));
         tileMap.put("floor", new Tiles.Tile(2, 0));
-        tileMap.put("hammer", new Tiles.Tile(5, 29));
         tileMap.put("helmet", new Tiles.Tile(4, 22));
         tileMap.put("key", new Tiles.Tile(16, 23));
         tileMap.put("naked player", new Tiles.Tile(25, 0));
@@ -43,6 +41,8 @@ public class Tiles {
         tileMap.put("pines", new Tiles.Tile(3, 2));
         tileMap.put("player with helm without sword", new Tiles.Tile(30, 0));
         tileMap.put("player with sword and helm", new Tiles.Tile(28, 0));
+        tileMap.put("player with two sword", new Tiles.Tile(29, 2));
+        tileMap.put("player with two sword and helm", new Tiles.Tile(30, 2));
         tileMap.put("player with sword without helm", new Tiles.Tile(27, 0));
         tileMap.put("riverbody", new Tiles.Tile(8, 5));
         tileMap.put("stairs", new Tiles.Tile(2, 6));
@@ -50,6 +50,7 @@ public class Tiles {
         tileMap.put("skull", new Tiles.Tile(1, 15));
         tileMap.put("goblin", new Tile(26, 2));
         tileMap.put("sword", new Tiles.Tile(0, 31));
+        tileMap.put("sword1", new Tiles.Tile(0, 31));
         tileMap.put("bear", new Tiles.Tile(30, 8));
         tileMap.put("wall", new Tiles.Tile(10, 17));
         tileMap.put("ghost", new Tiles.Tile(24, 8));

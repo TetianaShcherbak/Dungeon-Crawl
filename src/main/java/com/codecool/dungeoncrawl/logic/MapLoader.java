@@ -124,8 +124,7 @@ public class MapLoader {
                             map.setPlayer(new Player(cell));
                             break;
                         case 'A':
-                            cell.setType(CellType.FLOOR);
-                            new Arrow(cell, 10);
+                            cell.setType(CellType.ARROW);
                             break;
                         case 'B':
                             cell.setType(CellType.BRIDGE);
@@ -152,17 +151,13 @@ public class MapLoader {
                             break;
                         case 'b':
                             cell.setType(CellType.FLOOR);
-                            new Bow(cell, 8);
+                            new Sword1(cell, 8);
                             break;
                         case 'd':
                             cell.setType(CellType.DOOROPEN);
                             break;
                         case 'f':
                             cell.setType(CellType.FIRE);
-                            break;
-                        case 'h':
-                            cell.setType(CellType.FLOOR);
-                            new Hammer(cell, 5);
                             break;
                         case 'k':
                             cell.setType(CellType.FLOOR);
@@ -183,8 +178,7 @@ public class MapLoader {
                             cell.setType(CellType.STAIRS);
                             break;
                         case 'z':
-                            cell.setType(CellType.FLOOR);
-                            new Skull(cell, 8);
+                            cell.setType(CellType.SKULL);
                             break;
                         case 'l':
                             cell.setType(CellType.BEAR);
