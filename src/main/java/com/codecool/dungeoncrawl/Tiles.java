@@ -53,7 +53,8 @@ public class Tiles {
         tileMap.put("sword1", new Tiles.Tile(0, 31));
         tileMap.put("bear", new Tiles.Tile(30, 8));
         tileMap.put("wall", new Tiles.Tile(10, 17));
-        tileMap.put("ghost", new Tiles.Tile(24, 8));
+        tileMap.put("ghost", new Tiles.Tile(26, 6));
+        tileMap.put("monster", new Tiles.Tile(30, 6));
     }
 
     public static class Tile {
