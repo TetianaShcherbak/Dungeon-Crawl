@@ -39,7 +39,13 @@ public class Cell implements Drawable {
     }
 
     public Cell getNeighbor(int dx, int dy) {
-        return this.gameMap.getCell(this.x + dx, this.y + dy);
+        try {
+            return this.gameMap.getCell(this.x + dx, this.y + dy);
+        }
+        catch (Exception ex){
+            return this;
+        }
+
     }
 
     public Actor getActor() {
@@ -57,5 +63,9 @@ public class Cell implements Drawable {
 
     public int getY() {
         return this.y;
+    }
+
+    public GameMap getGameMap() {
+        return gameMap;
     }
 }

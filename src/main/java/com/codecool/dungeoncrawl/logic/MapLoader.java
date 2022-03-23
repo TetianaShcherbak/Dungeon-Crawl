@@ -93,7 +93,7 @@ public class MapLoader {
                         case 'c':
                         case 'e':
                         case 'g':
-                            cell.setType(CellType.GHOST);
+                            cell.setType(CellType.FLOOR);
                             map.setGhostInitial(new Ghost(cell));
                             break;
                         case 'i':

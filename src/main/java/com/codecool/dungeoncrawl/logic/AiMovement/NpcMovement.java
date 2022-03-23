@@ -1,5 +1,6 @@
 package com.codecool.dungeoncrawl.logic.AiMovement;
 import com.codecool.dungeoncrawl.logic.GameMap;
+import com.codecool.dungeoncrawl.logic.actors.Ghost;
 import com.codecool.dungeoncrawl.logic.actors.Goblin;
 
 public class NpcMovement {
@@ -22,6 +23,9 @@ public class NpcMovement {
     }
 
     private void moveGhosts(){
+        for (Ghost ghost : map.getGhosts()) {
+            ghost.randomMove();
 
+        }
     }
 }
