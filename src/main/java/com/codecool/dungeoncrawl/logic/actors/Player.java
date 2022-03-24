@@ -5,15 +5,13 @@
 
 package com.codecool.dungeoncrawl.logic.actors;
 
-import com.codecool.dungeoncrawl.logic.BackPack;
-import com.codecool.dungeoncrawl.logic.Cell;
-import com.codecool.dungeoncrawl.logic.CellType;
-import com.codecool.dungeoncrawl.logic.GameMap;
+import com.codecool.dungeoncrawl.logic.*;
 import com.codecool.dungeoncrawl.logic.items.Cheese;
 import com.codecool.dungeoncrawl.logic.items.Item;
 
 
 public class Player extends Actor {
+    private Developers developers;
     public BackPack backpack;
     private String playerView = "naked player";
     private String name;
@@ -22,12 +20,23 @@ public class Player extends Actor {
         super(cell);
         this.backpack = new BackPack(this);
         this.name = name;
+        this.developers = new Developers(name);
+    }
+
+    private void playerMove(Cell nextCell){
+        updateBackPackTempPocketAccordingToMove(nextCell);
+        this.getCell().setCellContent(null);
+        nextCell.setCellContent(this);
+        this.setCell(nextCell);
     }
 
     @Override
     public void move(int dx, int dy) {
         Cell nextCell = this.getCell().getNeighbor(dx, dy);
-        if ((nextCell.getType() == CellType.FLOOR) ||
+        if (developers.isDeveloperName()){
+            playerMove(nextCell);
+        }
+        else if ((nextCell.getType() == CellType.FLOOR) ||
                 (nextCell.getType() == CellType.DOOROPEN) ||
                 (nextCell.getType() == CellType.STAIRS) ||
                 (nextCell.getType() == CellType.CASTLE1) ||
@@ -38,10 +47,7 @@ public class Player extends Actor {
                 (nextCell.getType() == CellType.CASTLE6) ||
                 (nextCell.getType() == CellType.CASTLE7) ||
                 (nextCell.getType() == CellType.CASTLE8)) {
-            updateBackPackTempPocketAccordingToMove(nextCell);
-            this.getCell().setCellContent(null);
-            nextCell.setCellContent(this);
-            this.setCell(nextCell);
+            playerMove(nextCell);
         }
     }
 
