@@ -4,12 +4,10 @@ import javafx.application.Application;
 import javafx.geometry.HPos;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.ContentDisplay;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.GridPane;
+import javafx.scene.control.*;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.*;
 import javafx.stage.Stage;
 
 
@@ -21,24 +19,34 @@ public class PlayerInput extends Application {
 
     @Override
     public void start(Stage stage) {
-        Button button = new Button("START"); // przycisk
-        GridPane ui = new GridPane(); // siatka na elementy
-        Label label = new Label("Enter player name:"); // stworzenie nowej etykiety
+
+        VBox ui = new VBox();
         TextField playerName = new TextField(); // pole na wpisanie tekstu
-        ui.add(label, 0, 0);
-        ui.add(playerName, 0, 1);
-        ui.add(button, 0, 2);
+        Label label = new Label("Enter player name:"); // stworzenie nowej etykiety
+        label.setStyle("-fx-font-size: 30");
+        Button button = new Button("START"); // przycisk
+        BackgroundImage backk = new BackgroundImage(new Image("unknown.png"), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER,
+                BackgroundSize.DEFAULT);
+
+
+        ui.setBackground(new Background(backk));
+        ui.getChildren().add(label);
+        ui.getChildren().add(playerName);
+        ui.getChildren().add(button);
+
 
         // formatowanie okna
         ui.setPadding(new Insets(10, 10, 10, 10)); // marginesy
-        ui.setVgap(10); // odsuwanie się pionowo między elementami
-        GridPane.setHalignment(label, HPos.CENTER); // wyśrodkowanie tekstu
-        GridPane.setHalignment(button, HPos.CENTER); // wyśrodkowanie przycisku
+
 
         button.setOnAction(ev -> startGame(stage, playerName.getText())); // przypisanie wydarzenie do przycisku
 
+
         Scene scene = new Scene(ui); // tworzenie nowego okna
         stage.setScene(scene); // wyświetlanie okna
+        stage.setMinHeight(400.1);
+        stage.setMinWidth(400.1);
+
 
         stage.setTitle("Dungeon Crawl"); // ustawianie tytułu okna
         stage.show();  // wyświetlenie okna

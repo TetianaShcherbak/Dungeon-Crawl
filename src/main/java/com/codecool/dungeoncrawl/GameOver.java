@@ -1,0 +1,66 @@
+package com.codecool.dungeoncrawl;
+
+import com.codecool.dungeoncrawl.logic.MapLoader;
+import javafx.application.Platform;
+import javafx.geometry.HPos;
+import javafx.geometry.Insets;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.layout.*;
+import javafx.stage.Stage;
+
+import javax.swing.text.html.ImageView;
+import java.awt.*;
+
+
+public class GameOver {
+
+
+    public void start(Stage stage, String playerName) {
+        Button button1 = new Button("START NEW GAME"); // przycisk
+        Button button2 = new Button("EXIT"); // przycisk
+        VBox gameOverGrid = new VBox(); // siatka na elementy
+        Label label = new Label("GAME OVER"); // stworzenie nowej etykiety
+        label.setStyle("-fx-font-family: 'Comic Sans MS'; -fx-font-size: 30");
+
+        BackgroundImage backk = new BackgroundImage(new Image("background1.png"), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER,
+                BackgroundSize.DEFAULT);
+
+
+        gameOverGrid.setBackground(new Background(backk));
+        gameOverGrid.getChildren().add(label);
+        gameOverGrid.getChildren().add(button1);
+        gameOverGrid.getChildren().add(button2);
+
+        // formatowanie okna
+        gameOverGrid.setPadding(new Insets(10, 10, 10, 10)); // marginesy
+        GridPane.setHalignment(label, HPos.CENTER); // wyśrodkowanie tekstu
+        GridPane.setHalignment(button1, HPos.CENTER); // wyśrodkowanie przycisku
+        GridPane.setHalignment(button2, HPos.CENTER); // wyśrodkowanie przycisku
+
+
+        button1.setOnAction(ev -> startGame(stage, playerName)); // przypisanie wydarzenie do przycisku
+        button2.setOnAction(ev -> exitGame()); // przypisanie wydarzenie do przycisku
+
+        Scene scene = new Scene(gameOverGrid); // tworzenie nowego okna
+        stage.setScene(scene); // wyświetlanie okna
+        stage.setHeight(500.1);
+        stage.setWidth(700.1);
+
+
+        stage.setTitle("Dungeon Crawl"); // ustawianie tytułu okna
+        stage.show();  // wyświetlenie okna
+    }
+
+    private void exitGame() {
+        Platform.exit();
+        System.exit(0);
+    }
+
+    private void startGame(Stage stage , String playerName) {
+        Main main = new Main(playerName);
+        main.start(stage);
+    }
+}

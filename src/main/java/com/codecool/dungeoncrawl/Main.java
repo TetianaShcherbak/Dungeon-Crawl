@@ -67,8 +67,8 @@ public class Main {
 
         inventoryBar.setPadding(new Insets(0));
 
-        refresh();
-        scene.setOnKeyPressed(this::onKeyPressed);
+        refresh(primaryStage);
+        scene.setOnKeyPressed(keyEvent -> onKeyPressed(keyEvent, primaryStage));
 
         primaryStage.setTitle("Dungeon Crawl");
         primaryStage.setMinHeight(530);
@@ -77,28 +77,28 @@ public class Main {
         primaryStage.show();
     }
 
-    private void onKeyPressed(KeyEvent keyEvent) {
+    private void onKeyPressed(KeyEvent keyEvent, Stage primaryStage) {
         switch (keyEvent.getCode()) {
             case UP:
                 map.getPlayer().move(0, -1);
-                refresh();
+                refresh(primaryStage);
                 break;
             case DOWN:
                 map.getPlayer().move(0, 1);
-                refresh();
+                refresh(primaryStage);
                 break;
             case LEFT:
                 map.getPlayer().move(-1, 0);
-                refresh();
+                refresh(primaryStage);
                 break;
             case RIGHT:
                 map.getPlayer().move(1, 0);
-                refresh();
+                refresh(primaryStage);
                 break;
             case E:
                 map.getPlayer().getBackpack().addItemToBackPack();
                 infoLabel.setText(map.getPlayer().getBackpack().showItemInfo());
-                refresh();
+                refresh(primaryStage);
                 break;
             case K:
                 map.getPlayer().openDoor();
@@ -106,13 +106,13 @@ public class Main {
                 break;
             case Q:
                 map.getPlayer().healthUp();
-                refresh();
+                refresh(primaryStage);
                 break;
         }
     }
 
 
-    private void refresh() {
+    private void refresh(Stage primaryStage) {
         ai.moveNpc();
 //        context.setFill(Color.BLACK);
         context.fillRect(0, 0, canvas.getWidth(), canvas.getHeight());
@@ -143,11 +143,13 @@ public class Main {
         if (GameMap.nextMap()){
             map = MapLoader.loadMap(playerName);
             ai = new NpcMovement(map);
-            refresh();
+            refresh(primaryStage);
         }
         Player player = map.getPlayer();
         if (player.backpack.containItemType("crown")){
             System.out.println("WIN");
+            GameOver gameOver = new GameOver();
+            gameOver.start(primaryStage, playerName);
         }
         ui.add(new Label(new String(String.valueOf(map.getPlayer().getHealth()).getBytes(StandardCharsets.UTF_8))), 1, 0);
     }
