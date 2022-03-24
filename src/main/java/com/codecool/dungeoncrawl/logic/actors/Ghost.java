@@ -14,15 +14,26 @@ public class Ghost extends Actor{
 
     public Ghost(Cell cell) {
         super(cell);
+        this.setHealth(2);
+        this.setAttackPower(1);
+        this.setShield(1);
         createMoves();
     }
 
     @Override
     public void move(int dx, int dy) {
+        System.out.println("ghost: " + this.getX() + "; " + this.getY());
         Cell nextCell = this.getCell().getNeighbor(dx, dy);
-            this.getCell().setCellContent(null);
-            nextCell.setCellContent(this);
-            this.setCell(nextCell);
+//        if (nextCell.getActor() instanceof Player){
+//            attack(nextCell.getActor());
+//            if(isDead()){
+//                this.getCell().setCellContent(null);
+//                return;
+//            }
+//        }
+        this.getCell().setCellContent(null);
+        nextCell.setCellContent(this);
+        this.setCell(nextCell);
     }
 
     private void createMoves(){

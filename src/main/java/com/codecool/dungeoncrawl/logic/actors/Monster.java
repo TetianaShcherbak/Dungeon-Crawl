@@ -6,6 +6,9 @@ import com.codecool.dungeoncrawl.logic.CellType;
 public class Monster extends Actor {
     public Monster(Cell cell) {
         super(cell);
+        this.setHealth(3);
+        this.setAttackPower(2);
+        this.setShield(2);
     }
 
     public String getTileName() {
@@ -110,7 +113,16 @@ public class Monster extends Actor {
 
     @Override
     public void move(int dx, int dy) {
+        System.out.println("monster: " + this.getX() + "; " + this.getY());
         Cell nextCell = this.getCell().getNeighbor(dx, dy);
+//        System.out.println(nextCell.getActor());
+//        if (nextCell.getActor() instanceof Player){
+//            attack(nextCell.getActor());
+//            if(isDead()){
+//                this.getCell().setCellContent(null);
+//                return;
+//            }
+//        }
         if ((nextCell.getType() == CellType.FLOOR) && nextCell.getCellContent() == null) {
             this.getCell().setCellContent(null);
             nextCell.setCellContent(this);

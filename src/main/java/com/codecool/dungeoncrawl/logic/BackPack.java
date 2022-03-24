@@ -17,18 +17,14 @@ public class BackPack {
     }
 
     public void addItemToBackPack(){
-//        if(backpack != null){
-//            System.out.println(backpack.toString());
-//        }
-
         if (tempPocket != null){
             if (backpack.size() < size){
                 backpack.add(tempPocket);
+                updatePlayerParameters(tempPocket);
                 owner.setTileName();
                 setTempPocket(null);
             }
         }
-        //System.out.println(backpack.toString());
     }
 
     public Item getItemFromBackpack(String type){
@@ -53,6 +49,16 @@ public class BackPack {
 //            setTempPocket(lastItem);
 //        }
 //    }
+
+    private void updatePlayerParameters(Item item){
+        int health = owner.getHealth();
+        int attackPower = owner.getAttackPower();
+        int shield = owner.getShield();
+
+        owner.setHealth(health + item.getHealthUpper());
+        owner.setAttackPower(attackPower + item.getAttackUpper());
+        owner.setShield(shield + item.getShieldUpper());
+    }
 
     private boolean isPlayerOnItemPosition(Item item){
         int playerX = owner.getCell().getX();

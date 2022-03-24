@@ -10,6 +10,10 @@ import com.codecool.dungeoncrawl.logic.Cell;
 public class Skeleton extends Actor {
     public Skeleton(Cell cell) {
         super(cell);
+        this.setHealth(1);
+        this.setAttackPower(1);
+        this.setShield(0);
+        System.out.println("skeleton: " + this.getX() + "; " + this.getY());
     }
 
     public String getTileName() {

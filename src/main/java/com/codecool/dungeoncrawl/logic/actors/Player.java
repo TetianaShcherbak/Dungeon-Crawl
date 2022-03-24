@@ -17,6 +17,9 @@ public class Player extends Actor {
 
     public Player(Cell cell) {
         super(cell);
+        this.setHealth(5);
+        this.setAttackPower(1);
+        this.setShield(1);
         this.backpack = new BackPack(this);
     }
 
@@ -27,6 +30,19 @@ public class Player extends Actor {
                 (nextCell.getType() == CellType.DOOROPEN) ||
                 (nextCell.getType() == CellType.STAIRS)) {
             updateBackPackTempPocketAccordingToMove(nextCell);
+            System.out.println("nextCell: " + nextCell.getX() + "; " + nextCell.getY());
+            System.out.println("player: " + this.getX() + "; " + this.getY());
+
+            System.out.println(nextCell.getActor());
+            if (nextCell.getActor() instanceof Actor){
+                attack(nextCell.getActor());
+                if(isDead()){
+                    this.getCell().setCellContent(null);
+                    System.out.println("Game over!");
+                    return;
+                }
+            }
+
             this.getCell().setCellContent(null);
             nextCell.setCellContent(this);
             this.setCell(nextCell);
