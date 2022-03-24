@@ -103,7 +103,9 @@ public class Player extends Actor {
     public void healthUp(){
         if(this.backpack.containItemType("cheese")){
             Item cheese = this.backpack.getItemFromBackpack("cheese");
-            this.setHealth(cheese.getHealthUp());
+            if (this.getHealth() < 10){
+                this.setHealth(cheese.getHealthUp());
+            }
             this.backpack.removeItem(cheese);
             try {
                 PlayMusic.playMusic("src/main/resources/music/eat.wav", 80.0f);
