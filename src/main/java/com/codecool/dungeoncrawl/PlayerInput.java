@@ -3,6 +3,7 @@ package com.codecool.dungeoncrawl;
 import javafx.application.Application;
 import javafx.geometry.HPos;
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
@@ -25,28 +26,28 @@ public class PlayerInput extends Application {
         Label label = new Label("Enter player name:"); // stworzenie nowej etykiety
         label.setStyle("-fx-font-size: 30");
         Button button = new Button("START"); // przycisk
-        BackgroundImage backk = new BackgroundImage(new Image("unknown.png"), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER,
+        BackgroundImage backk = new BackgroundImage(new Image("unknown.png"),
+                BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER,
                 BackgroundSize.DEFAULT);
-
 
         ui.setBackground(new Background(backk));
         ui.getChildren().add(label);
         ui.getChildren().add(playerName);
         ui.getChildren().add(button);
 
-
         // formatowanie okna
         ui.setPadding(new Insets(10, 10, 10, 10)); // marginesy
-
+        ui.setAlignment(Pos.BASELINE_CENTER); // centrowanie okna
+        VBox.setMargin(button, new Insets(10, 10, 10, 10)); // ustawianie marginesów dookoła obiektu VBox
+        VBox.setMargin(label, new Insets(10, 10, 10, 10)); // ustawianie marginesów dookoła obiektu VBox
+        VBox.setMargin(playerName, new Insets(10, 10, 10, 10)); // ustawianie marginesów dookoła obiektu VBox
 
         button.setOnAction(ev -> startGame(stage, playerName.getText())); // przypisanie wydarzenie do przycisku
-
 
         Scene scene = new Scene(ui); // tworzenie nowego okna
         stage.setScene(scene); // wyświetlanie okna
         stage.setMinHeight(400.1);
         stage.setMinWidth(400.1);
-
 
         stage.setTitle("Dungeon Crawl"); // ustawianie tytułu okna
         stage.show();  // wyświetlenie okna

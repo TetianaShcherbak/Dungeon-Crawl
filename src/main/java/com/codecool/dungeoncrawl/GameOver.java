@@ -4,6 +4,7 @@ import com.codecool.dungeoncrawl.logic.MapLoader;
 import javafx.application.Platform;
 import javafx.geometry.HPos;
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -39,6 +40,10 @@ public class GameOver {
         GridPane.setHalignment(label, HPos.CENTER); // wyśrodkowanie tekstu
         GridPane.setHalignment(button1, HPos.CENTER); // wyśrodkowanie przycisku
         GridPane.setHalignment(button2, HPos.CENTER); // wyśrodkowanie przycisku
+        gameOverGrid.setAlignment(Pos.BASELINE_CENTER); // centrowanie okna
+        VBox.setMargin(button1, new Insets(10, 10, 10, 10)); // ustawianie marginesów dookoła obiektu VBox
+        VBox.setMargin(label, new Insets(10, 10, 10, 10)); // ustawianie marginesów dookoła obiektu VBox
+        VBox.setMargin(button2, new Insets(10, 10, 10, 10));
 
 
         button1.setOnAction(ev -> startGame(stage, playerName)); // przypisanie wydarzenie do przycisku
