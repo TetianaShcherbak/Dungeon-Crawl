@@ -17,10 +17,6 @@ public class BackPack {
     }
 
     public void addItemToBackPack(){
-//        if(backpack != null){
-//            System.out.println(backpack.toString());
-//        }
-
         if (tempPocket != null){
             if (backpack.size() < size){
                 backpack.add(tempPocket);
@@ -28,7 +24,6 @@ public class BackPack {
                 setTempPocket(null);
             }
         }
-        //System.out.println(backpack.toString());
     }
 
     public Item getItemFromBackpack(String type){
@@ -43,7 +38,9 @@ public class BackPack {
     }
 
     public void removeItem(Item item){
-        backpack.remove(item);
+        if (this.hasConcreteItem(item)){
+            backpack.remove(item);
+        }
     }
 
 //    public void dropLastGottenItem(){

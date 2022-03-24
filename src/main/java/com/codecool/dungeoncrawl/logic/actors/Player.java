@@ -8,6 +8,8 @@ package com.codecool.dungeoncrawl.logic.actors;
 import com.codecool.dungeoncrawl.logic.BackPack;
 import com.codecool.dungeoncrawl.logic.Cell;
 import com.codecool.dungeoncrawl.logic.CellType;
+import com.codecool.dungeoncrawl.logic.GameMap;
+import com.codecool.dungeoncrawl.logic.items.Cheese;
 import com.codecool.dungeoncrawl.logic.items.Item;
 
 
@@ -70,6 +72,14 @@ public class Player extends Actor {
             return currentPlayerCell.getNeighbor(1,0);
         }
         return null;
+    }
+
+    public void healthUp(){
+        if(this.backpack.containItemType("cheese")){
+            Item cheese = this.backpack.getItemFromBackpack("cheese");
+            this.setHealth(cheese.getHealthUp());
+            this.backpack.removeItem(cheese);
+        }
     }
 
     private void updateBackPackTempPocketAccordingToMove(Cell nextCell){

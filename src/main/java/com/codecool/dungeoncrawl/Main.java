@@ -104,6 +104,10 @@ public class Main {
                 map.getPlayer().openDoor();
                 refresh();
                 break;
+            case Q:
+                map.getPlayer().healthUp();
+                refresh();
+                break;
         }
     }
 

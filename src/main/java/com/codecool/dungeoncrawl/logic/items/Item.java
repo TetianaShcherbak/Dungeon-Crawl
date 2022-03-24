@@ -7,6 +7,8 @@ import com.codecool.dungeoncrawl.logic.Drawable;
 public abstract class Item implements Drawable {
     private Cell cell;
     private int price = 10;
+    private int healthUp;
+
     private String description = "Item";
 
     public Item(Cell cell, int price) {
@@ -28,4 +30,8 @@ public abstract class Item implements Drawable {
     public String getDescription() { return description; }
 
     public void setDescription(String description) { this.description = description; }
+
+    public int getHealthUp() { return healthUp; }
+
+    public void setHealthUp(int healthUp) { this.healthUp = healthUp; }
 }
