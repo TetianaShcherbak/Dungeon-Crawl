@@ -22,7 +22,7 @@ OOOOOOOOOOOOOOO#f..........s.............f#rr
 OOOOOOOOOOOOOOO##################....######rr
 OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO#....#rrrrrrr
 OOOOOOOOO###########OOOOOOOOOOOO#....#rrrrrrr
-##########f........#OOOOOOOOOOOO#....#rrrrrrr
+##########f..t.....#OOOOOOOOOOOO#....#rrrrrrr
 t..dD...........A..##############...z#rrrrrrr
 ##########.....###...................#rrrrrrr
 OOOOOOOOO#f...................A......#rrrrrrr

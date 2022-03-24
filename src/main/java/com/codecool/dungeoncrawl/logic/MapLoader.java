@@ -13,8 +13,9 @@ import java.util.Scanner;
 
 public class MapLoader {
     private static int flag = 0;
-    public MapLoader() {
-    }
+    private static Player player = new Player(new Cell(new GameMap(5,5,CellType.EMPTY),1,1,CellType.FLOOR));
+
+    public MapLoader() {}
 
     public static GameMap loadMap() {
         String[] maps = {"/map.txt", "/map1.txt", "/map2.txt"};
@@ -124,7 +125,12 @@ public class MapLoader {
                             break;
                         case '@':
                             cell.setType(CellType.FLOOR);
-                            map.setPlayer(new Player(cell));
+                            if (flag == 1){
+                                player = new Player(cell);
+                            } else {
+                                player.setCell(cell);
+                            }
+                            map.setPlayer(player);
                             break;
                         case 'A':
                             cell.setType(CellType.ARROW);
