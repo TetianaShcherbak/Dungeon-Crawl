@@ -102,7 +102,7 @@ public class Main {
                 break;
             case K:
                 map.getPlayer().openDoor();
-                refresh();
+                refresh(primaryStage);
                 break;
             case Q:
                 map.getPlayer().healthUp();
@@ -148,6 +148,11 @@ public class Main {
         Player player = map.getPlayer();
         if (player.backpack.containItemType("crown")){
             System.out.println("WIN");
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
             GameOver gameOver = new GameOver();
             gameOver.start(primaryStage, playerName);
         }
