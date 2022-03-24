@@ -54,6 +54,15 @@ public class Tiles {
         tileMap.put("bear", new Tiles.Tile(30, 8));
         tileMap.put("wall", new Tiles.Tile(10, 17));
         tileMap.put("ghost", new Tiles.Tile(26, 6));
+        tileMap.put("1", new Tiles.Tile(0, 16));
+        tileMap.put("2", new Tiles.Tile(1, 16));
+        tileMap.put("3", new Tiles.Tile(2, 16));
+        tileMap.put("4", new Tiles.Tile(0, 17));
+        tileMap.put("5", new Tiles.Tile(2, 17));
+        tileMap.put("6", new Tiles.Tile(0, 18));
+        tileMap.put("7", new Tiles.Tile(1, 18));
+        tileMap.put("8", new Tiles.Tile(2, 18));
+        tileMap.put("crown", new Tiles.Tile(11, 24));
         tileMap.put("monster", new Tiles.Tile(30, 6));
     }
 

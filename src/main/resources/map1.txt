@@ -1,29 +1,29 @@
 45 28
 PPPPPPPPPPPPPPPPPPP########OOOOOOOOOOOOOOOOOO
-PPPPPPPPPPPPPPPPPP#......C#OOOOOOOOOOOOOOOOOO
+PPPPPPPPPPPPPPPPPP#k.s...C#OOOOOOOOOOOOOOOOOO
 PPPPPPPPPPPPPPPPPPP###..###OOOOOOOOOOOOOOOOOO
-###################  #..#OOOOOOOOOOOOOOOOOOOO
+###################  #.g#OOOOOOOOOOOOOOOOOOOO
 #C.......@.......f#  #..#OOOOOOOOOOOOOOOOOOOO
 #.........###.....####..##########OOOOOOOOOOO
 #....s......#...................z###########O
-#...........A......########................#O
-#...................#........s...#########.#O
+#.g.........A......########................#O
+#......m............#...g....s...#########.#O
 #f.........f#.......####.........#rrrrrrr#.#O
 ####.##############..#...........#rrrrrrr#.#O
 rrr#.#rrrrrrrrrrrr#......s.......#rrrrr###.#O
 ####.###rrrrrr#####..............#rrrrr#...#O
-#S....q#rrrrrr#..........#########rrrrr#..##r
-########rrrrrr#.........z#rrrrrrrrrrrrr#..#rr
+#S....q#rrrrrr#.....g....#########rrrrr#..##r
+########rrrrrr#.........z#rrrrrrrrrrrrr#g.#rr
 rrrrrrrrrrrrrr##..########rrrrrrrrrrrrr#..#rr
 OOOOOOOOOOOOOOO#..#rrrrrrrrrrrrrrrrrrrr#..#rr
 OOOOOOOOOOOOOOO#..######################..#rr
-OOOOOOOOOOOOOOO#..........................#rr
+OOOOOOOOOOOOOOO#....g.....................#rr
 OOOOOOOOOOOOOOO#f..........s.............f#rr
 OOOOOOOOOOOOOOO##################....######rr
 OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO#....#rrrrrrr
 OOOOOOOOO###########OOOOOOOOOOOO#....#rrrrrrr
-##########f..t.....#OOOOOOOOOOOO#....#rrrrrrr
-t..dD...........A..##############...z#rrrrrrr
-##########.....###...................#rrrrrrr
-OOOOOOOOO#f...................A......#rrrrrrr
+##########f........#OOOOOOOOOOOO#....#rrrrrrr
+t...D......g....A..##############...z#rrrrrrr
+##########.....###..........s........#rrrrrrr
+OOOOOOOOO#f....s.....g....s...A......#rrrrrrr
 OOOOOOOOO#############################rrrrrrr

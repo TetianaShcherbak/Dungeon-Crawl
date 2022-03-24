@@ -23,7 +23,6 @@ import java.nio.charset.StandardCharsets;
 
 
 public class Main extends Application {
-//    NpcMovement ai = new NpcMovement();
     GameMap map = MapLoader.loadMap();
     NpcMovement ai = new NpcMovement(map);
     Canvas canvas = new Canvas(
