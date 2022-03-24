@@ -21,6 +21,14 @@ public enum CellType {
     WALL("wall"),
     SKULL("skull"),
     ARROW("<>"),
+    CASTLE1("1"),
+    CASTLE2("2"),
+    CASTLE3("3"),
+    CASTLE4("4"),
+    CASTLE5("5"),
+    CASTLE6("6"),
+    CASTLE7("7"),
+    CASTLE8("8"),
     GHOST("ghost");
 
     private final String tileName;

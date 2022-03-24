@@ -24,7 +24,16 @@ public class Player extends Actor {
     public void move(int dx, int dy) {
         Cell nextCell = this.getCell().getNeighbor(dx, dy);
         if ((nextCell.getType() == CellType.FLOOR) ||
-                (nextCell.getType() == CellType.DOOROPEN)) {
+                (nextCell.getType() == CellType.DOOROPEN) ||
+                (nextCell.getType() == CellType.STAIRS) ||
+                (nextCell.getType() == CellType.CASTLE1) ||
+                (nextCell.getType() == CellType.CASTLE2) ||
+                (nextCell.getType() == CellType.CASTLE3) ||
+                (nextCell.getType() == CellType.CASTLE4) ||
+                (nextCell.getType() == CellType.CASTLE5) ||
+                (nextCell.getType() == CellType.CASTLE6) ||
+                (nextCell.getType() == CellType.CASTLE7) ||
+                (nextCell.getType() == CellType.CASTLE8)) {
             updateBackPackTempPocketAccordingToMove(nextCell);
             this.getCell().setCellContent(null);
             nextCell.setCellContent(this);

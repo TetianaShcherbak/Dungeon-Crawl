@@ -16,7 +16,7 @@ public class GameMap {
     private int width;
     private int height;
     private Cell[][] cells;
-    private Player player;
+    private static Player player;
     private ArrayList<Goblin> goblins = new ArrayList<>();
     private ArrayList<Ghost> ghosts = new ArrayList<>();
     private ArrayList<Monster> monsters = new ArrayList<>();
@@ -43,6 +43,13 @@ public class GameMap {
 
     public Player getPlayer() {
         return this.player;
+    }
+
+    public static boolean nextMap() {
+        Cell cell = player.getCell();
+        if (cell.getType() == CellType.STAIRS) {
+            return true;
+        } else return false;
     }
 
 
