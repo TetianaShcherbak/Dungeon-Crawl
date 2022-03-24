@@ -148,6 +148,7 @@ public class MapLoader {
                             if (flag == 1){
                                 player = new Player(cell, playerName);
                             } else {
+                                cell.setCellContent(player);
                                 player.setCell(cell);
                             }
                             map.setPlayer(player);

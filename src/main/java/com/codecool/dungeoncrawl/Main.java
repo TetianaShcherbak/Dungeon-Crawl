@@ -6,7 +6,6 @@ import com.codecool.dungeoncrawl.logic.GameMap;
 import com.codecool.dungeoncrawl.logic.MapLoader;
 import com.codecool.dungeoncrawl.logic.actors.Player;
 import com.codecool.dungeoncrawl.logic.items.Cheese;
-import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
@@ -27,7 +26,6 @@ public class Main {
     NpcMovement ai;
     Canvas canvas;
     GraphicsContext context;
-    Label healthLabel = new Label("ddd");
     Label infoLabel;
     GridPane inventoryBar;
     GridPane ui;
@@ -119,10 +117,8 @@ public class Main {
                 Player player = map.getPlayer();
                 int playerPositionX = player.getX();
                 int playerPositionY = player.getY();
-                int windowX=0;
-                int windowY=0;
-                windowX = cameraStopMove(playerPositionX, playerPositionY, x, y, windowX, windowY)[0];
-                windowY = cameraStopMove(playerPositionX, playerPositionY, x, y, windowX, windowY)[1];
+                int windowX = cameraStopMove(playerPositionX, playerPositionY, x, y)[0];
+                int windowY = cameraStopMove(playerPositionX, playerPositionY, x, y)[1];
                 if (windowY < 0 || windowY >= map.getHeight()) {
                     Tiles.drawTile(context, () -> "empty", x, y);
                 } else if (windowX < 0 || windowX >= map.getWidth()){
@@ -144,6 +140,10 @@ public class Main {
             map = MapLoader.loadMap(playerName);
             ai = new NpcMovement(map);
             refresh();
+        }
+        Player player = map.getPlayer();
+        if (player.backpack.containItemType("crown")){
+            System.out.println("WIN");
         }
         ui.add(new Label(new String(String.valueOf(map.getPlayer().getHealth()).getBytes(StandardCharsets.UTF_8))), 1, 0);
     }
@@ -176,19 +176,21 @@ public class Main {
         }
     }
 
-    private int[] cameraStopMove(int playerPositionX, int playerPositionY, int x, int y, int windowX, int windowY){
+    private int[] cameraStopMove(int playerPositionX, int playerPositionY, int x, int y){
+        int windowX;
+        int windowY;
         if (playerPositionX<11 && playerPositionY<6){
             windowX = x;
             windowY = y;
         }else if (playerPositionX>34 && playerPositionY<6){
             windowX = x+23;
-            windowY = y;;
+            windowY = y;
         }else if (playerPositionX<11 && playerPositionY>20){
             windowX = x;
-            windowY = y+14;;
+            windowY = y+14;
         }else if (playerPositionX>34 && playerPositionY>20){
             windowX = x+23;
-            windowY = y+14;;
+            windowY = y+14;
         } else if (playerPositionX<11){
             windowX = x;
             windowY = playerPositionY + y - 6;
