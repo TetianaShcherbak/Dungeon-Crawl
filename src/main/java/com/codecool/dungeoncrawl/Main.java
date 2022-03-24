@@ -4,7 +4,6 @@ import com.codecool.dungeoncrawl.logic.AiMovement.NpcMovement;
 import com.codecool.dungeoncrawl.logic.Cell;
 import com.codecool.dungeoncrawl.logic.GameMap;
 import com.codecool.dungeoncrawl.logic.MapLoader;
-import com.codecool.dungeoncrawl.logic.PlayMusic;
 import com.codecool.dungeoncrawl.logic.actors.Player;
 import com.codecool.dungeoncrawl.logic.items.Cheese;
 import javafx.geometry.Insets;
@@ -20,11 +19,6 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.stage.Stage;
-
-import javax.sound.sampled.LineUnavailableException;
-import javax.sound.sampled.UnsupportedAudioFileException;
-import java.io.IOException;
-import java.nio.charset.StandardCharsets;
 
 
 public class Main {
@@ -59,21 +53,13 @@ public class Main {
 
 
         Label healthLabel = new Label("Health: ");
-        Paint PaintGreen = Color.web("#679e02");
-        healthLabel.setTextFill(PaintGreen);
-        healthLabel.setStyle("-fx-font-family: 'Comic Sans MS'");
-        ui.add(healthLabel, 0, 0);
+        ui.add(changeLabelFont("#679e02", healthLabel), 0, 0);
 
         Label nameLabel = new Label("Player name: ");
-        nameLabel.setTextFill(PaintGreen);
-        nameLabel.setStyle("-fx-font-family: 'Comic Sans MS'");
-        ui.add(nameLabel, 0, 1);
+        ui.add(changeLabelFont("#679e02", nameLabel), 0, 1);
 
         Label name = new Label(playerName);
-        Paint PaintViolet = Color.web("#5f0a8c");
-        name.setTextFill(PaintViolet);
-        name.setStyle("-fx-font-family: 'Comic Sans MS'");
-        ui.add(name, 1, 1);
+        ui.add(changeLabelFont("#5f0a8c", name), 1, 1);
 
 
         BorderPane borderPane = new BorderPane();
@@ -166,23 +152,9 @@ public class Main {
             ai = new NpcMovement(map);
             refresh(primaryStage);
         }
-        Player player = map.getPlayer();
-        if (player.backpack.containItemType("crown")){
-            System.out.println("WIN");
-            try {
-                Thread.sleep(1000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-            GameOver gameOver = new GameOver();
-            gameOver.start(primaryStage, playerName);
-        }
-
+        isWin(primaryStage);
         Label newLabel = new Label(String.valueOf(map.getPlayer().getHealth()));
-        Paint PaintViolet = Color.web("#5f0a8c");
-        newLabel.setTextFill(PaintViolet);
-        newLabel.setStyle("-fx-font-family: 'Comic Sans MS'");
-        ui.add(newLabel, 1, 0);
+        ui.add(changeLabelFont("#5f0a8c", newLabel), 1, 0);
     }
 
     private void showInventaryBar(){
@@ -245,5 +217,25 @@ public class Main {
             windowY = playerPositionY + y - 6;
         }
         return new int[]{windowX, windowY};
+    }
+
+    private Label changeLabelFont(String colorString, Label newLabel){
+        Paint paint = Color.web(colorString);
+        newLabel.setTextFill(paint);
+        newLabel.setStyle("-fx-font-family: 'Comic Sans MS'");
+        return newLabel;
+    }
+
+    private void isWin(Stage primaryStage){
+        Player player = map.getPlayer();
+        if (player.backpack.containItemType("crown")){
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            GameOver gameOver = new GameOver();
+            gameOver.start(primaryStage, playerName);
+        }
     }
 }
