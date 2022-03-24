@@ -1,5 +1,6 @@
 package com.codecool.dungeoncrawl;
 
+import com.codecool.dungeoncrawl.logic.PlayMusic;
 import javafx.application.Application;
 import javafx.geometry.HPos;
 import javafx.geometry.Insets;
@@ -13,6 +14,10 @@ import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.stage.Stage;
 
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
+import java.io.IOException;
+
 
 public class PlayerInput extends Application {
 
@@ -21,8 +26,8 @@ public class PlayerInput extends Application {
     }
 
     @Override
-    public void start(Stage stage) {
-
+    public void start(Stage stage) throws UnsupportedAudioFileException, LineUnavailableException, IOException {
+        PlayMusic.playMusic("src/main/resources/music/start.wav", 50.0f);
         VBox ui = new VBox();
         TextField playerName = new TextField(); // pole na wpisanie tekstu
         playerName.setStyle("-fx-font-family: 'Comic Sans MS'; -fx-text-fill: #679e02");

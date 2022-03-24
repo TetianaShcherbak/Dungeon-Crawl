@@ -9,6 +9,10 @@ import com.codecool.dungeoncrawl.logic.*;
 import com.codecool.dungeoncrawl.logic.items.Cheese;
 import com.codecool.dungeoncrawl.logic.items.Item;
 
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
+import java.io.IOException;
+
 
 public class Player extends Actor {
     private Developers developers;
@@ -32,6 +36,15 @@ public class Player extends Actor {
 
     @Override
     public void move(int dx, int dy) {
+        try {
+            PlayMusic.playMusic("src/main/resources/music/step.wav", 80.0f);
+        } catch (UnsupportedAudioFileException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (LineUnavailableException e) {
+            e.printStackTrace();
+        }
         Cell nextCell = this.getCell().getNeighbor(dx, dy);
         if (developers.isDeveloperName()){
             playerMove(nextCell);
@@ -56,7 +69,15 @@ public class Player extends Actor {
             return;
         }
         if (getDoorCellIfCloseTo() == null){ return; }
-
+        try {
+            PlayMusic.playMusic("src/main/resources/music/door.wav", 70.0f);
+        } catch (UnsupportedAudioFileException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (LineUnavailableException e) {
+            e.printStackTrace();
+        }
         Item key = backpack.getItemFromBackpack("key");
         backpack.removeItem(key);
         getDoorCellIfCloseTo().setType(CellType.DOOROPEN);
@@ -64,7 +85,6 @@ public class Player extends Actor {
 
     private Cell getDoorCellIfCloseTo(){
         Cell currentPlayerCell = this.getCell();
-
         if(currentPlayerCell.getNeighbor(0,-1).getType() == CellType.DOORCLOSE) { // upDirectionCell
             return currentPlayerCell.getNeighbor(0,-1);
         }
@@ -85,6 +105,15 @@ public class Player extends Actor {
             Item cheese = this.backpack.getItemFromBackpack("cheese");
             this.setHealth(cheese.getHealthUp());
             this.backpack.removeItem(cheese);
+            try {
+                PlayMusic.playMusic("src/main/resources/music/eat.wav", 80.0f);
+            } catch (UnsupportedAudioFileException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            } catch (LineUnavailableException e) {
+                e.printStackTrace();
+            }
         }
     }
 

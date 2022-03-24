@@ -4,6 +4,7 @@ import com.codecool.dungeoncrawl.logic.AiMovement.NpcMovement;
 import com.codecool.dungeoncrawl.logic.Cell;
 import com.codecool.dungeoncrawl.logic.GameMap;
 import com.codecool.dungeoncrawl.logic.MapLoader;
+import com.codecool.dungeoncrawl.logic.PlayMusic;
 import com.codecool.dungeoncrawl.logic.actors.Player;
 import com.codecool.dungeoncrawl.logic.items.Cheese;
 import javafx.geometry.Insets;
@@ -20,6 +21,9 @@ import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.stage.Stage;
 
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
+import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 
 
@@ -94,7 +98,7 @@ public class Main {
         primaryStage.show();
     }
 
-    private void onKeyPressed(KeyEvent keyEvent, Stage primaryStage) {
+    private void onKeyPressed(KeyEvent keyEvent, Stage primaryStage){
         switch (keyEvent.getCode()) {
             case UP:
                 map.getPlayer().move(0, -1);

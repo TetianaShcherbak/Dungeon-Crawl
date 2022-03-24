@@ -3,6 +3,9 @@ package com.codecool.dungeoncrawl.logic;
 import com.codecool.dungeoncrawl.logic.actors.Player;
 import com.codecool.dungeoncrawl.logic.items.Item;
 
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Locale;
 
@@ -19,6 +22,15 @@ public class BackPack {
     public void addItemToBackPack(){
         if (tempPocket != null){
             if (backpack.size() < size){
+                try {
+                    PlayMusic.playMusic("src/main/resources/music/dropinbag.wav", 80.0f);
+                } catch (UnsupportedAudioFileException e) {
+                    e.printStackTrace();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                } catch (LineUnavailableException e) {
+                    e.printStackTrace();
+                }
                 backpack.add(tempPocket);
                 owner.setTileName();
                 setTempPocket(null);
@@ -88,7 +100,9 @@ public class BackPack {
 
     public Item getTempPocket() {  return tempPocket; }
 
-    public void setTempPocket(Item tempPocket) { this.tempPocket = tempPocket; }
+    public void setTempPocket(Item tempPocket) {
+        this.tempPocket = tempPocket;
+    }
 
 
     public String showItemInfo(){ //todo: ??
