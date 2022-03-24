@@ -9,6 +9,8 @@ import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
+import javafx.scene.paint.Color;
+import javafx.scene.paint.Paint;
 import javafx.stage.Stage;
 
 
@@ -23,9 +25,14 @@ public class PlayerInput extends Application {
 
         VBox ui = new VBox();
         TextField playerName = new TextField(); // pole na wpisanie tekstu
+        playerName.setStyle("-fx-font-family: 'Comic Sans MS'; -fx-text-fill: #679e02");
         Label label = new Label("Enter player name:"); // stworzenie nowej etykiety
-        label.setStyle("-fx-font-size: 30");
+        Paint Paint = Color.web("#679e02");
+        label.setTextFill(Paint);
+        label.setStyle("-fx-font-family: 'Comic Sans MS'; -fx-font-size: 30");
         Button button = new Button("START"); // przycisk
+        button.setStyle("-fx-font-family: 'Comic Sans MS'");
+        button.setTextFill(Paint);
         BackgroundImage backk = new BackgroundImage(new Image("unknown.png"),
                 BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER,
                 BackgroundSize.DEFAULT);

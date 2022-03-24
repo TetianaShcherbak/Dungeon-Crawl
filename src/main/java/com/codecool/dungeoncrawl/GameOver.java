@@ -10,6 +10,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.layout.*;
+import javafx.scene.paint.Color;
+import javafx.scene.paint.Paint;
 import javafx.stage.Stage;
 
 import javax.swing.text.html.ImageView;
@@ -22,9 +24,15 @@ public class GameOver {
     public void start(Stage stage, String playerName) {
         Button button1 = new Button("START NEW GAME"); // przycisk
         Button button2 = new Button("EXIT"); // przycisk
-        VBox gameOverGrid = new VBox(); // siatka na elementy
+        VBox gameOverGrid = new VBox();
         Label label = new Label("GAME OVER"); // stworzenie nowej etykiety
-        label.setStyle("-fx-font-family: 'Comic Sans MS'; -fx-font-size: 30");
+        label.setStyle("-fx-font-family: 'Comic Sans MS'; -fx-font-size: 70; -fx-font-weight: bold");
+        Paint Paint = Color.web("#a30025");
+        label.setTextFill(Paint);
+        button1.setStyle("-fx-font-family: 'Comic Sans MS'");
+        button1.setTextFill(Paint);
+        button2.setStyle("-fx-font-family: 'Comic Sans MS'");
+        button2.setTextFill(Paint);
 
         BackgroundImage backk = new BackgroundImage(new Image("background1.png"), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER,
                 BackgroundSize.DEFAULT);

@@ -13,7 +13,7 @@ OOOO#.m#rrrrrrrrrrr#..........g......A.....C#
 OOOO#..#rrrrrrrrr###..#######################
 OO####.####rrrrrr#....s.#PPPPPPPPPPPPPPPPPPPP
 OO#S.....q#rrrrrr#.####.#PPPPPPPPPPPPPPPPPPPP
-OO#.g.....#rr###r#...C#.#PPP  l  l PPPPPPPPPP
+OO#.gt....#rr###r#...C#.#PPP  l  l PPPPPPPPPP
 OO#....s..#rr#b#r#.####.#PPPPP  P  l  PPPPPPP
 OO#.####..#rr#.###.#..s.#PPPPPPPPPPPPPPPPPPPP
 OO#.......#rr#.....#D####PPPPPPPPPPPPPPPPPPPP

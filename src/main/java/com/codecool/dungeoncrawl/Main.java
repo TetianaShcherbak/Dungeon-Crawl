@@ -16,6 +16,8 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.paint.Color;
+import javafx.scene.paint.Paint;
 import javafx.stage.Stage;
 
 import java.nio.charset.StandardCharsets;
@@ -47,12 +49,27 @@ public class Main {
     public void start(Stage primaryStage) {
         System.out.println(map.getWidth());
 
+
         ui.setPrefWidth(200);
         ui.setPadding(new Insets(10));
 
 
+        Label healthLabel = new Label("Health: ");
+        Paint PaintGreen = Color.web("#679e02");
+        healthLabel.setTextFill(PaintGreen);
+        healthLabel.setStyle("-fx-font-family: 'Comic Sans MS'");
+        ui.add(healthLabel, 0, 0);
 
-        ui.add(new Label(new String("Health: ".getBytes(StandardCharsets.UTF_8))), 0, 0);
+        Label nameLabel = new Label("Player name: ");
+        nameLabel.setTextFill(PaintGreen);
+        nameLabel.setStyle("-fx-font-family: 'Comic Sans MS'");
+        ui.add(nameLabel, 0, 1);
+
+        Label name = new Label(playerName);
+        Paint PaintViolet = Color.web("#5f0a8c");
+        name.setTextFill(PaintViolet);
+        name.setStyle("-fx-font-family: 'Comic Sans MS'");
+        ui.add(name, 1, 1);
 
 
         BorderPane borderPane = new BorderPane();
@@ -156,7 +173,12 @@ public class Main {
             GameOver gameOver = new GameOver();
             gameOver.start(primaryStage, playerName);
         }
-        ui.add(new Label(new String(String.valueOf(map.getPlayer().getHealth()).getBytes(StandardCharsets.UTF_8))), 1, 0);
+
+        Label newLabel = new Label(String.valueOf(map.getPlayer().getHealth()));
+        Paint PaintViolet = Color.web("#5f0a8c");
+        newLabel.setTextFill(PaintViolet);
+        newLabel.setStyle("-fx-font-family: 'Comic Sans MS'");
+        ui.add(newLabel, 1, 0);
     }
 
     private void showInventaryBar(){
