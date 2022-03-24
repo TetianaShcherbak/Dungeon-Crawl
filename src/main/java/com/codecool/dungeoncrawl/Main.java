@@ -6,6 +6,7 @@ import com.codecool.dungeoncrawl.logic.GameMap;
 import com.codecool.dungeoncrawl.logic.MapLoader;
 import com.codecool.dungeoncrawl.logic.actors.Player;
 import com.codecool.dungeoncrawl.logic.items.Cheese;
+import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
@@ -71,8 +72,8 @@ public class Main {
         refresh();
         scene.setOnKeyPressed(this::onKeyPressed);
 
-
         primaryStage.setTitle("Dungeon Crawl");
+        primaryStage.setMinHeight(530);
         primaryStage.centerOnScreen(); // wyśrodkowanie sceny na ekranie
         primaryStage.show();
     }
