@@ -111,6 +111,10 @@ public class Player extends Actor {
     }
 
     public void setTileName() {
+        if (backpack.containItemType("crown")){
+            this.playerView = "player with crown";
+            return;
+        }
         if (backpack.containItemType("helmet") && backpack.containItemType("sword") && backpack.containItemType("sword1")){
             this.playerView = "player with two sword and helm";
             return;

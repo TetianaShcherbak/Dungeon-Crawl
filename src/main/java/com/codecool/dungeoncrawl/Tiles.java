@@ -40,6 +40,7 @@ public class Tiles {
         tileMap.put("oaks", new Tiles.Tile(3, 1));
         tileMap.put("pines", new Tiles.Tile(3, 2));
         tileMap.put("player with helm without sword", new Tiles.Tile(30, 0));
+        tileMap.put("player with crown", new Tiles.Tile(30, 1));
         tileMap.put("player with sword and helm", new Tiles.Tile(28, 0));
         tileMap.put("player with two sword", new Tiles.Tile(29, 2));
         tileMap.put("player with two sword and helm", new Tiles.Tile(30, 2));
