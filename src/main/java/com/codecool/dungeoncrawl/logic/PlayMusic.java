@@ -16,6 +16,7 @@ public class PlayMusic {
         float gain = volume+ gainControl.getMinimum();
         gainControl.setValue(gain);
         clip.start();
+
 //        clip.stop();
 //        clip.setMicrosecondPosition(0);
 //        clip.close();
