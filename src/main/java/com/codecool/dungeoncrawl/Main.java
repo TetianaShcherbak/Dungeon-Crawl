@@ -27,9 +27,9 @@ public class Main {
     Canvas canvas;
     GraphicsContext context;
     Label healthLabel = new Label("ddd");
-    Label infoLabel = new Label();
-    GridPane inventoryBar = new GridPane();
-    GridPane ui = new GridPane();
+    Label infoLabel;
+    GridPane inventoryBar;
+    GridPane ui;
     String playerName;
 
     public Main(String playerName) {
@@ -40,6 +40,9 @@ public class Main {
                 map.getWidth()/2 * Tiles.TILE_WIDTH,
                 map.getHeight()/2 * Tiles.TILE_WIDTH);
         context = canvas.getGraphicsContext2D();
+        infoLabel = new Label();
+        inventoryBar = new GridPane();
+        ui = new GridPane();
     }
 
     public void start(Stage primaryStage) {
