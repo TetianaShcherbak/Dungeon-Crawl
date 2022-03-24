@@ -39,7 +39,9 @@ public class BackPack {
     }
 
     public void removeItem(Item item){
-        backpack.remove(item);
+        if (this.hasConcreteItem(item)){
+            backpack.remove(item);
+        }
     }
 
 //    public void dropLastGottenItem(){

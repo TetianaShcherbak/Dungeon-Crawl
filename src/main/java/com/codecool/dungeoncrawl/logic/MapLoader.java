@@ -13,11 +13,12 @@ import java.util.Scanner;
 
 public class MapLoader {
     private static int flag = 0;
-    private static Player player = new Player(new Cell(new GameMap(5,5,CellType.EMPTY),1,1,CellType.FLOOR));
+   // private static Player player = new Player(new Cell(new GameMap(5,5,CellType.EMPTY),1,1,CellType.FLOOR));
+    private static Player player;
 
     public MapLoader() {}
 
-    public static GameMap loadMap() {
+    public static GameMap loadMap(String playerName) {
         String[] maps = {"/map.txt", "/map1.txt", "/map2.txt"};
         InputStream is = MapLoader.class.getResourceAsStream(maps[flag]);
         flag++;
@@ -51,14 +52,33 @@ public class MapLoader {
                         case '-':
                         case '/':
                         case '0':
+                            cell.setType(CellType.FLOOR);
+                            new Crown(cell, 100);
+                            break;
                         case '1':
+                            cell.setType(CellType.CASTLE1);
+                            break;
                         case '2':
+                            cell.setType(CellType.CASTLE2);
+                            break;
                         case '3':
+                            cell.setType(CellType.CASTLE3);
+                            break;
                         case '4':
+                            cell.setType(CellType.CASTLE4);
+                            break;
                         case '5':
+                            cell.setType(CellType.CASTLE5);
+                            break;
                         case '6':
+                            cell.setType(CellType.CASTLE6);
+                            break;
                         case '7':
+                            cell.setType(CellType.CASTLE7);
+                            break;
                         case '8':
+                            cell.setType(CellType.CASTLE8);
+                            break;
                         case '9':
                         case ':':
                         case ';':
@@ -126,8 +146,9 @@ public class MapLoader {
                         case '@':
                             cell.setType(CellType.FLOOR);
                             if (flag == 1){
-                                player = new Player(cell);
+                                player = new Player(cell, playerName);
                             } else {
+                                cell.setCellContent(player);
                                 player.setCell(cell);
                             }
                             map.setPlayer(player);

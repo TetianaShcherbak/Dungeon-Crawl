@@ -6,7 +6,6 @@ import com.codecool.dungeoncrawl.logic.GameMap;
 import com.codecool.dungeoncrawl.logic.MapLoader;
 import com.codecool.dungeoncrawl.logic.actors.Player;
 import com.codecool.dungeoncrawl.logic.items.Cheese;
-import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
@@ -22,24 +21,30 @@ import javafx.stage.Stage;
 import java.nio.charset.StandardCharsets;
 
 
-public class Main extends Application {
-//    NpcMovement ai = new NpcMovement();
-    GameMap map = MapLoader.loadMap();
-    NpcMovement ai = new NpcMovement(map);
-    Canvas canvas = new Canvas(
-            map.getWidth()/2 * Tiles.TILE_WIDTH,
-            map.getHeight()/2 * Tiles.TILE_WIDTH);
-    GraphicsContext context = canvas.getGraphicsContext2D();
-    Label healthLabel = new Label("ddd");
-    Label infoLabel = new Label();
-    GridPane inventoryBar = new GridPane();
-    GridPane ui = new GridPane();
-    public static void main(String[] args) {
-        launch(args);
+public class Main {
+    GameMap map;
+    NpcMovement ai;
+    Canvas canvas;
+    GraphicsContext context;
+    Label infoLabel;
+    GridPane inventoryBar;
+    GridPane ui;
+    String playerName;
+
+    public Main(String playerName) {
+        this.playerName = playerName;
+        map = MapLoader.loadMap(playerName);
+        ai = new NpcMovement(map);
+        canvas = new Canvas(
+                map.getWidth()/2 * Tiles.TILE_WIDTH,
+                map.getHeight()/2 * Tiles.TILE_WIDTH);
+        context = canvas.getGraphicsContext2D();
+        infoLabel = new Label();
+        inventoryBar = new GridPane();
+        ui = new GridPane();
     }
 
-    @Override
-    public void start(Stage primaryStage) throws Exception {
+    public void start(Stage primaryStage) {
         System.out.println(map.getWidth());
 
         ui.setPrefWidth(200);
@@ -65,8 +70,10 @@ public class Main extends Application {
         refresh();
         scene.setOnKeyPressed(this::onKeyPressed);
 
-
         primaryStage.setTitle("Dungeon Crawl");
+        primaryStage.setMinHeight(530);
+        primaryStage.setMinWidth(800);
+        primaryStage.centerOnScreen(); // wyśrodkowanie sceny na ekranie
         primaryStage.show();
     }
 
@@ -97,6 +104,10 @@ public class Main extends Application {
                 map.getPlayer().openDoor();
                 refresh();
                 break;
+            case Q:
+                map.getPlayer().healthUp();
+                refresh();
+                break;
         }
     }
 
@@ -110,10 +121,8 @@ public class Main extends Application {
                 Player player = map.getPlayer();
                 int playerPositionX = player.getX();
                 int playerPositionY = player.getY();
-                int windowX=0;
-                int windowY=0;
-                windowX = cameraStopMove(playerPositionX, playerPositionY, x, y, windowX, windowY)[0];
-                windowY = cameraStopMove(playerPositionX, playerPositionY, x, y, windowX, windowY)[1];
+                int windowX = cameraStopMove(playerPositionX, playerPositionY, x, y)[0];
+                int windowY = cameraStopMove(playerPositionX, playerPositionY, x, y)[1];
                 if (windowY < 0 || windowY >= map.getHeight()) {
                     Tiles.drawTile(context, () -> "empty", x, y);
                 } else if (windowX < 0 || windowX >= map.getWidth()){
@@ -132,8 +141,13 @@ public class Main extends Application {
         }
         showInventaryBar();
         if (GameMap.nextMap()){
-            map = MapLoader.loadMap();
+            map = MapLoader.loadMap(playerName);
+            ai = new NpcMovement(map);
             refresh();
+        }
+        Player player = map.getPlayer();
+        if (player.backpack.containItemType("crown")){
+            System.out.println("WIN");
         }
         ui.add(new Label(new String(String.valueOf(map.getPlayer().getHealth()).getBytes(StandardCharsets.UTF_8))), 1, 0);
     }
@@ -166,19 +180,21 @@ public class Main extends Application {
         }
     }
 
-    private int[] cameraStopMove(int playerPositionX, int playerPositionY, int x, int y, int windowX, int windowY){
+    private int[] cameraStopMove(int playerPositionX, int playerPositionY, int x, int y){
+        int windowX;
+        int windowY;
         if (playerPositionX<11 && playerPositionY<6){
             windowX = x;
             windowY = y;
         }else if (playerPositionX>34 && playerPositionY<6){
             windowX = x+23;
-            windowY = y;;
+            windowY = y;
         }else if (playerPositionX<11 && playerPositionY>20){
             windowX = x;
-            windowY = y+14;;
+            windowY = y+14;
         }else if (playerPositionX>34 && playerPositionY>20){
             windowX = x+23;
-            windowY = y+14;;
+            windowY = y+14;
         } else if (playerPositionX<11){
             windowX = x;
             windowY = playerPositionY + y - 6;
