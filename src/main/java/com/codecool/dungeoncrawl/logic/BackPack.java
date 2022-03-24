@@ -44,14 +44,6 @@ public class BackPack {
         }
     }
 
-//    public void dropLastGottenItem(){
-//        Item lastItem = backpack.get(backpack.size() - 1);
-//        if (isPlayerOnItemPosition(lastItem)){
-//            backpack.remove(backpack.size() - 1);
-//            setTempPocket(lastItem);
-//        }
-//    }
-
     private void updatePlayerParameters(Item item){
         int health = owner.getHealth();
         int attackPower = owner.getAttackPower();
@@ -118,22 +110,4 @@ public class BackPack {
 
         return  info;
     }
-
-    public String showBackPackContent(){ //todo: ??
-        String info;
-        if (backpack == null){
-            info = "Your backpack is empty now!";
-            return info;
-        }
-
-        info = "Your backpack content:\n";
-        for(int i=0; i<size; i++){
-            info += "\t" + (i + 1) + "/" + (size + 1) + "  ";
-            info += backpack.get(i).getTileName() + ": ";
-            info +=backpack.get(i).getPrice() + " coin(s)\n";
-        }
-        return info;
-    }
-
-
 }

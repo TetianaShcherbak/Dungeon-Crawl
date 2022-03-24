@@ -93,7 +93,7 @@ public class Player extends Actor {
     public void healthUp(){
         if(this.backpack.containItemType("cheese")){
             Item cheese = this.backpack.getItemFromBackpack("cheese");
-            this.setHealth(cheese.getHealthUp());
+            this.setHealth(this.getHealth() + cheese.getHealthUpper());
             this.backpack.removeItem(cheese);
         }
     }
