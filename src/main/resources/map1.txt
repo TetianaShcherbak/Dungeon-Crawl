@@ -4,7 +4,7 @@ PPPPPPPPPPPPPPPPPP#k.s...C#OOOOOOOOOOOOOOOOOO
 PPPPPPPPPPPPPPPPPPP###..###OOOOOOOOOOOOOOOOOO
 ###################  #.g#OOOOOOOOOOOOOOOOOOOO
 #C.......@.......f#  #..#OOOOOOOOOOOOOOOOOOOO
-#....t....###.....####..##########OOOOOOOOOOO
+#.........###.....####..##########OOOOOOOOOOO
 #....s......#...................z###########O
 #.g.........A......########.......m........#O
 #......m............#...g....s...#########.#O
