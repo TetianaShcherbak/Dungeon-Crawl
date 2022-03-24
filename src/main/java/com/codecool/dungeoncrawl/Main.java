@@ -6,6 +6,7 @@ import com.codecool.dungeoncrawl.logic.GameMap;
 import com.codecool.dungeoncrawl.logic.MapLoader;
 import com.codecool.dungeoncrawl.logic.actors.Player;
 import com.codecool.dungeoncrawl.logic.items.Cheese;
+import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
@@ -27,9 +28,9 @@ public class Main {
     Canvas canvas;
     GraphicsContext context;
     Label healthLabel = new Label("ddd");
-    Label infoLabel = new Label();
-    GridPane inventoryBar = new GridPane();
-    GridPane ui = new GridPane();
+    Label infoLabel;
+    GridPane inventoryBar;
+    GridPane ui;
     String playerName;
 
     public Main(String playerName) {
@@ -40,6 +41,9 @@ public class Main {
                 map.getWidth()/2 * Tiles.TILE_WIDTH,
                 map.getHeight()/2 * Tiles.TILE_WIDTH);
         context = canvas.getGraphicsContext2D();
+        infoLabel = new Label();
+        inventoryBar = new GridPane();
+        ui = new GridPane();
     }
 
     public void start(Stage primaryStage) {
@@ -68,8 +72,8 @@ public class Main {
         refresh();
         scene.setOnKeyPressed(this::onKeyPressed);
 
-
         primaryStage.setTitle("Dungeon Crawl");
+        primaryStage.setMinHeight(530);
         primaryStage.centerOnScreen(); // wyśrodkowanie sceny na ekranie
         primaryStage.show();
     }
