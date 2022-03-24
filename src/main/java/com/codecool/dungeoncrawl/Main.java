@@ -21,7 +21,7 @@ import javafx.stage.Stage;
 import java.nio.charset.StandardCharsets;
 
 
-public class Main extends Application {
+public class Main {
 //    NpcMovement ai = new NpcMovement();
     GameMap map = MapLoader.loadMap();
     NpcMovement ai = new NpcMovement(map);
@@ -33,12 +33,9 @@ public class Main extends Application {
     Label infoLabel = new Label();
     GridPane inventoryBar = new GridPane();
     GridPane ui = new GridPane();
-    public static void main(String[] args) {
-        launch(args);
-    }
 
-    @Override
-    public void start(Stage primaryStage) throws Exception {
+
+    public void start(Stage primaryStage) {
         System.out.println(map.getWidth());
 
         ui.setPrefWidth(200);
