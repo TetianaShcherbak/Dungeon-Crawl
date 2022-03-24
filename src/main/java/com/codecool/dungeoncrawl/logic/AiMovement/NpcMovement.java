@@ -18,7 +18,7 @@ public class NpcMovement {
 
     private void moveGoblins(){
         for (Goblin goblin : map.getGoblins()) {
-            goblin.move(1, 0);
+            goblin.moveGoblin();
         }
     }
 
