@@ -74,6 +74,7 @@ public class Main {
 
         primaryStage.setTitle("Dungeon Crawl");
         primaryStage.setMinHeight(530);
+        primaryStage.setMinWidth(800);
         primaryStage.centerOnScreen(); // wyśrodkowanie sceny na ekranie
         primaryStage.show();
     }
