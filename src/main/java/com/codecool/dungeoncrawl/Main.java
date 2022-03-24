@@ -6,7 +6,6 @@ import com.codecool.dungeoncrawl.logic.GameMap;
 import com.codecool.dungeoncrawl.logic.MapLoader;
 import com.codecool.dungeoncrawl.logic.actors.Player;
 import com.codecool.dungeoncrawl.logic.items.Cheese;
-import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
@@ -22,23 +21,28 @@ import javafx.stage.Stage;
 import java.nio.charset.StandardCharsets;
 
 
-public class Main extends Application {
-    GameMap map = MapLoader.loadMap();
-    NpcMovement ai = new NpcMovement(map);
-    Canvas canvas = new Canvas(
-            map.getWidth()/2 * Tiles.TILE_WIDTH,
-            map.getHeight()/2 * Tiles.TILE_WIDTH);
-    GraphicsContext context = canvas.getGraphicsContext2D();
+public class Main {
+    GameMap map;
+    NpcMovement ai;
+    Canvas canvas;
+    GraphicsContext context;
     Label healthLabel = new Label("ddd");
     Label infoLabel = new Label();
     GridPane inventoryBar = new GridPane();
     GridPane ui = new GridPane();
-    public static void main(String[] args) {
-        launch(args);
+    String playerName;
+
+    public Main(String playerName) {
+        this.playerName = playerName;
+        map = MapLoader.loadMap(playerName);
+        ai = new NpcMovement(map);
+        canvas = new Canvas(
+                map.getWidth()/2 * Tiles.TILE_WIDTH,
+                map.getHeight()/2 * Tiles.TILE_WIDTH);
+        context = canvas.getGraphicsContext2D();
     }
 
-    @Override
-    public void start(Stage primaryStage) throws Exception {
+    public void start(Stage primaryStage) {
         System.out.println(map.getWidth());
 
         ui.setPrefWidth(200);
@@ -66,6 +70,7 @@ public class Main extends Application {
 
 
         primaryStage.setTitle("Dungeon Crawl");
+        primaryStage.centerOnScreen(); // wyśrodkowanie sceny na ekranie
         primaryStage.show();
     }
 
@@ -131,7 +136,7 @@ public class Main extends Application {
         }
         showInventaryBar();
         if (GameMap.nextMap()){
-            map = MapLoader.loadMap();
+            map = MapLoader.loadMap(playerName);
             ai = new NpcMovement(map);
             refresh();
         }

@@ -13,11 +13,12 @@ import java.util.Scanner;
 
 public class MapLoader {
     private static int flag = 0;
-    private static Player player = new Player(new Cell(new GameMap(5,5,CellType.EMPTY),1,1,CellType.FLOOR));
+   // private static Player player = new Player(new Cell(new GameMap(5,5,CellType.EMPTY),1,1,CellType.FLOOR));
+    private static Player player;
 
     public MapLoader() {}
 
-    public static GameMap loadMap() {
+    public static GameMap loadMap(String playerName) {
         String[] maps = {"/map.txt", "/map1.txt", "/map2.txt"};
         InputStream is = MapLoader.class.getResourceAsStream(maps[flag]);
         flag++;
@@ -145,7 +146,7 @@ public class MapLoader {
                         case '@':
                             cell.setType(CellType.FLOOR);
                             if (flag == 1){
-                                player = new Player(cell);
+                                player = new Player(cell, playerName);
                             } else {
                                 player.setCell(cell);
                             }
