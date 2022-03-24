@@ -132,6 +132,7 @@ public class Main extends Application {
         showInventaryBar();
         if (GameMap.nextMap()){
             map = MapLoader.loadMap();
+            ai = new NpcMovement(map);
             refresh();
         }
         ui.add(new Label(new String(String.valueOf(map.getPlayer().getHealth()).getBytes(StandardCharsets.UTF_8))), 1, 0);
