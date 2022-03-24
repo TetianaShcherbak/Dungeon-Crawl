@@ -23,17 +23,25 @@ import java.nio.charset.StandardCharsets;
 
 
 public class Main {
-    GameMap map = MapLoader.loadMap();
-    NpcMovement ai = new NpcMovement(map);
-    Canvas canvas = new Canvas(
-            map.getWidth()/2 * Tiles.TILE_WIDTH,
-            map.getHeight()/2 * Tiles.TILE_WIDTH);
-    GraphicsContext context = canvas.getGraphicsContext2D();
+    GameMap map;
+    NpcMovement ai;
+    Canvas canvas;
+    GraphicsContext context;
     Label healthLabel = new Label("ddd");
     Label infoLabel = new Label();
     GridPane inventoryBar = new GridPane();
     GridPane ui = new GridPane();
+    String playerName;
 
+    public Main(String playerName) {
+        this.playerName = playerName;
+        map = MapLoader.loadMap(playerName);
+        ai = new NpcMovement(map);
+        canvas = new Canvas(
+                map.getWidth()/2 * Tiles.TILE_WIDTH,
+                map.getHeight()/2 * Tiles.TILE_WIDTH);
+        context = canvas.getGraphicsContext2D();
+    }
 
     public void start(Stage primaryStage) {
         System.out.println(map.getWidth());
@@ -128,7 +136,7 @@ public class Main {
         }
         showInventaryBar();
         if (GameMap.nextMap()){
-            map = MapLoader.loadMap();
+            map = MapLoader.loadMap(playerName);
             ai = new NpcMovement(map);
             refresh();
         }

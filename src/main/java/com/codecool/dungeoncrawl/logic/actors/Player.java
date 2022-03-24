@@ -14,10 +14,12 @@ import com.codecool.dungeoncrawl.logic.items.Item;
 public class Player extends Actor {
     public BackPack backpack;
     private String playerView = "naked player";
+    private String name;
 
-    public Player(Cell cell) {
+    public Player(Cell cell, String name) {
         super(cell);
         this.backpack = new BackPack(this);
+        this.name = name;
     }
 
     @Override
@@ -138,4 +140,7 @@ public class Player extends Actor {
 
     public BackPack getBackpack(){ return backpack; }
 
+    public String getName() {
+        return name;
+    }
 }
