@@ -21,13 +21,13 @@ import java.awt.*;
 public class GameOver {
 
 
-    public void start(Stage stage, String playerName) {
+    public void start(Stage stage, String playerName, String status) {
         Button button1 = new Button("START NEW GAME"); // przycisk
         Button button2 = new Button("EXIT"); // przycisk
         VBox gameOverGrid = new VBox();
-        Label label = new Label("GAME OVER"); // stworzenie nowej etykiety
+        Label label = new Label(status); // stworzenie nowej etykiety
         label.setStyle("-fx-font-family: 'Comic Sans MS'; -fx-font-size: 70; -fx-font-weight: bold");
-        Paint Paint = Color.web("#a30025");
+        Paint Paint = Color.web("#148ec7");
         label.setTextFill(Paint);
         button1.setStyle("-fx-font-family: 'Comic Sans MS'");
         button1.setTextFill(Paint);

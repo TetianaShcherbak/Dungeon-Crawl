@@ -246,12 +246,21 @@ public class Main {
         Player player = map.getPlayer();
         if (player.backpack.containItemType("crown")){
             try {
+                PlayMusic.playMusic("src/main/resources/music/win.wav", 80.0f);
+            } catch (UnsupportedAudioFileException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            } catch (LineUnavailableException e) {
+                e.printStackTrace();
+            }
+            try {
                 Thread.sleep(1000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
             GameOver gameOver = new GameOver();
-            gameOver.start(primaryStage, playerName);
+            gameOver.start(primaryStage, playerName, "YOU WIN");
         }
     }
 }
