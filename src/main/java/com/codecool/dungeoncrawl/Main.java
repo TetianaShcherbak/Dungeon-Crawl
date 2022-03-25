@@ -57,15 +57,6 @@ public class Main {
         ui.setPadding(new Insets(10));
 
 
-        Label healthLabel = new Label("Health: ");
-        ui.add(changeLabelFont("#679e02", healthLabel), 0, 0);
-
-        Label nameLabel = new Label("Player name: ");
-        ui.add(changeLabelFont("#679e02", nameLabel), 0, 1);
-
-        Label name = new Label(playerName);
-        ui.add(changeLabelFont("#5f0a8c", name), 1, 1);
-
 
         BorderPane borderPane = new BorderPane();
 
@@ -125,6 +116,7 @@ public class Main {
 
 
     private void refresh(Stage primaryStage) {
+        ui.getChildren().clear();
         ai.moveNpc();
 //        context.setFill(Color.BLACK);
         context.fillRect(0, 0, canvas.getWidth(), canvas.getHeight());
@@ -167,6 +159,16 @@ public class Main {
             refresh(primaryStage);
         }
         isWin(primaryStage);
+
+        Label healthLabel = new Label("Health: ");
+        ui.add(changeLabelFont("#679e02", healthLabel), 0, 0);
+
+        Label nameLabel = new Label("Player name: ");
+        ui.add(changeLabelFont("#679e02", nameLabel), 0, 1);
+
+        Label name = new Label(playerName);
+        ui.add(changeLabelFont("#5f0a8c", name), 1, 1);
+
         Label newLabel = new Label(String.valueOf(map.getPlayer().getHealth()));
         ui.add(changeLabelFont("#5f0a8c", newLabel), 1, 0);
     }
