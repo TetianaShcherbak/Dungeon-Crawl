@@ -1,16 +1,22 @@
 package com.codecool.dungeoncrawl;
 
+import com.codecool.dungeoncrawl.logic.PlayMusic;
 import javafx.application.Application;
 import javafx.geometry.HPos;
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.ContentDisplay;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.GridPane;
+import javafx.scene.control.*;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.*;
+import javafx.scene.paint.Color;
+import javafx.scene.paint.Paint;
 import javafx.stage.Stage;
+
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
+import java.io.IOException;
 
 
 public class PlayerInput extends Application {
@@ -20,25 +26,40 @@ public class PlayerInput extends Application {
     }
 
     @Override
-    public void start(Stage stage) {
-        Button button = new Button("START"); // przycisk
-        GridPane ui = new GridPane(); // siatka na elementy
-        Label label = new Label("Enter player name:"); // stworzenie nowej etykiety
+    public void start(Stage stage) throws UnsupportedAudioFileException, LineUnavailableException, IOException {
+        PlayMusic.playMusic("src/main/resources/music/start.wav", 50.0f);
+        VBox ui = new VBox();
         TextField playerName = new TextField(); // pole na wpisanie tekstu
-        ui.add(label, 0, 0);
-        ui.add(playerName, 0, 1);
-        ui.add(button, 0, 2);
+        playerName.setStyle("-fx-font-family: 'Comic Sans MS'; -fx-text-fill: #679e02");
+        Label label = new Label("Enter player name:"); // stworzenie nowej etykiety
+        Paint Paint = Color.web("#679e02");
+        label.setTextFill(Paint);
+        label.setStyle("-fx-font-family: 'Comic Sans MS'; -fx-font-size: 30");
+        Button button = new Button("START"); // przycisk
+        button.setStyle("-fx-font-family: 'Comic Sans MS'");
+        button.setTextFill(Paint);
+        BackgroundImage backk = new BackgroundImage(new Image("unknown.png"),
+                BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER,
+                BackgroundSize.DEFAULT);
+
+        ui.setBackground(new Background(backk));
+        ui.getChildren().add(label);
+        ui.getChildren().add(playerName);
+        ui.getChildren().add(button);
 
         // formatowanie okna
         ui.setPadding(new Insets(10, 10, 10, 10)); // marginesy
-        ui.setVgap(10); // odsuwanie się pionowo między elementami
-        GridPane.setHalignment(label, HPos.CENTER); // wyśrodkowanie tekstu
-        GridPane.setHalignment(button, HPos.CENTER); // wyśrodkowanie przycisku
+        ui.setAlignment(Pos.BASELINE_CENTER); // centrowanie okna
+        VBox.setMargin(button, new Insets(10, 10, 10, 10)); // ustawianie marginesów dookoła obiektu VBox
+        VBox.setMargin(label, new Insets(10, 10, 10, 10)); // ustawianie marginesów dookoła obiektu VBox
+        VBox.setMargin(playerName, new Insets(10, 10, 10, 10)); // ustawianie marginesów dookoła obiektu VBox
 
         button.setOnAction(ev -> startGame(stage, playerName.getText())); // przypisanie wydarzenie do przycisku
 
         Scene scene = new Scene(ui); // tworzenie nowego okna
         stage.setScene(scene); // wyświetlanie okna
+        stage.setMinHeight(400.1);
+        stage.setMinWidth(400.1);
 
         stage.setTitle("Dungeon Crawl"); // ustawianie tytułu okna
         stage.show();  // wyświetlenie okna

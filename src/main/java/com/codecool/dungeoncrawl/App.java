@@ -5,6 +5,7 @@
 
 package com.codecool.dungeoncrawl;
 
+
 public class App {
     public App() {
     }

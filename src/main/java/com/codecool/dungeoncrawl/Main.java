@@ -4,6 +4,7 @@ import com.codecool.dungeoncrawl.logic.AiMovement.NpcMovement;
 import com.codecool.dungeoncrawl.logic.Cell;
 import com.codecool.dungeoncrawl.logic.GameMap;
 import com.codecool.dungeoncrawl.logic.MapLoader;
+import com.codecool.dungeoncrawl.logic.PlayMusic;
 import com.codecool.dungeoncrawl.logic.actors.Player;
 import com.codecool.dungeoncrawl.logic.items.Cheese;
 import javafx.geometry.Insets;
@@ -16,9 +17,13 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.paint.Color;
+import javafx.scene.paint.Paint;
 import javafx.stage.Stage;
 
-import java.nio.charset.StandardCharsets;
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
+import java.io.IOException;
 
 
 public class Main {
@@ -47,12 +52,10 @@ public class Main {
     public void start(Stage primaryStage) {
         System.out.println(map.getWidth());
 
+
         ui.setPrefWidth(200);
         ui.setPadding(new Insets(10));
 
-
-
-        ui.add(new Label(new String("Health: ".getBytes(StandardCharsets.UTF_8))), 0, 0);
 
 
         BorderPane borderPane = new BorderPane();
@@ -67,8 +70,8 @@ public class Main {
 
         inventoryBar.setPadding(new Insets(0));
 
-        refresh();
-        scene.setOnKeyPressed(this::onKeyPressed);
+        refresh(primaryStage);
+        scene.setOnKeyPressed(keyEvent -> onKeyPressed(keyEvent, primaryStage));
 
         primaryStage.setTitle("Dungeon Crawl");
         primaryStage.setMinHeight(530);
@@ -77,42 +80,43 @@ public class Main {
         primaryStage.show();
     }
 
-    private void onKeyPressed(KeyEvent keyEvent) {
+    private void onKeyPressed(KeyEvent keyEvent, Stage primaryStage){
         switch (keyEvent.getCode()) {
             case UP:
                 map.getPlayer().move(0, -1);
-                refresh();
+                refresh(primaryStage);
                 break;
             case DOWN:
                 map.getPlayer().move(0, 1);
-                refresh();
+                refresh(primaryStage);
                 break;
             case LEFT:
                 map.getPlayer().move(-1, 0);
-                refresh();
+                refresh(primaryStage);
                 break;
             case RIGHT:
                 map.getPlayer().move(1, 0);
-                refresh();
+                refresh(primaryStage);
                 break;
             case E:
                 map.getPlayer().getBackpack().addItemToBackPack();
                 infoLabel.setText(map.getPlayer().getBackpack().showItemInfo());
-                refresh();
+                refresh(primaryStage);
                 break;
             case K:
                 map.getPlayer().openDoor();
-                refresh();
+                refresh(primaryStage);
                 break;
             case Q:
                 map.getPlayer().healthUp();
-                refresh();
+                refresh(primaryStage);
                 break;
         }
     }
 
 
-    private void refresh() {
+    private void refresh(Stage primaryStage) {
+        ui.getChildren().clear();
         ai.moveNpc();
 //        context.setFill(Color.BLACK);
         context.fillRect(0, 0, canvas.getWidth(), canvas.getHeight());
@@ -141,15 +145,32 @@ public class Main {
         }
         showInventaryBar();
         if (GameMap.nextMap()){
+            try {
+                PlayMusic.playMusic("src/main/resources/music/teleport.wav", 80.0f);
+            } catch (UnsupportedAudioFileException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            } catch (LineUnavailableException e) {
+                e.printStackTrace();
+            }
             map = MapLoader.loadMap(playerName);
             ai = new NpcMovement(map);
-            refresh();
+            refresh(primaryStage);
         }
-        Player player = map.getPlayer();
-        if (player.backpack.containItemType("crown")){
-            System.out.println("WIN");
-        }
-        ui.add(new Label(new String(String.valueOf(map.getPlayer().getHealth()).getBytes(StandardCharsets.UTF_8))), 1, 0);
+        isWin(primaryStage);
+
+        Label healthLabel = new Label("Health: ");
+        ui.add(changeLabelFont("#679e02", healthLabel), 0, 0);
+
+        Label nameLabel = new Label("Player name: ");
+        ui.add(changeLabelFont("#679e02", nameLabel), 0, 1);
+
+        Label name = new Label(playerName);
+        ui.add(changeLabelFont("#5f0a8c", name), 1, 1);
+
+        Label newLabel = new Label(String.valueOf(map.getPlayer().getHealth()) + "/10");
+        ui.add(changeLabelFont("#5f0a8c", newLabel), 1, 0);
     }
 
     private void showInventaryBar(){
@@ -212,5 +233,34 @@ public class Main {
             windowY = playerPositionY + y - 6;
         }
         return new int[]{windowX, windowY};
+    }
+
+    private Label changeLabelFont(String colorString, Label newLabel){
+        Paint paint = Color.web(colorString);
+        newLabel.setTextFill(paint);
+        newLabel.setStyle("-fx-font-family: 'Comic Sans MS'");
+        return newLabel;
+    }
+
+    private void isWin(Stage primaryStage){
+        Player player = map.getPlayer();
+        if (player.backpack.containItemType("crown")){
+            try {
+                PlayMusic.playMusic("src/main/resources/music/win.wav", 80.0f);
+            } catch (UnsupportedAudioFileException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            } catch (LineUnavailableException e) {
+                e.printStackTrace();
+            }
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            GameOver gameOver = new GameOver();
+            gameOver.start(primaryStage, playerName, "YOU WIN");
+        }
     }
 }

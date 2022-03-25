@@ -9,8 +9,13 @@ import com.codecool.dungeoncrawl.logic.*;
 import com.codecool.dungeoncrawl.logic.items.Cheese;
 import com.codecool.dungeoncrawl.logic.items.Item;
 
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
+import java.io.IOException;
+
 
 public class Player extends Actor {
+    private Developers developers;
     public BackPack backpack;
     private String playerView = "naked player";
     private String name;
@@ -22,13 +27,34 @@ public class Player extends Actor {
         this.setShield(1);
         this.backpack = new BackPack(this);
         this.name = name;
+        this.developers = new Developers(name);
+    }
+
+    private void playerMove(Cell nextCell){
+        updateBackPackTempPocketAccordingToMove(nextCell);
+        this.getCell().setCellContent(null);
+        nextCell.setCellContent(this);
+        this.setCell(nextCell);
     }
 
     @Override
     public void move(int dx, int dy) {
+        try {
+            PlayMusic.playMusic("src/main/resources/music/step.wav", 80.0f);
+        } catch (UnsupportedAudioFileException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (LineUnavailableException e) {
+            e.printStackTrace();
+        }
         Cell nextCell = this.getCell().getNeighbor(dx, dy);
 
         if ((nextCell.getType() == CellType.FLOOR) ||
+        if (developers.isDeveloperName()){
+            playerMove(nextCell);
+        }
+        else if ((nextCell.getType() == CellType.FLOOR) ||
                 (nextCell.getType() == CellType.DOOROPEN) ||
                 (nextCell.getType() == CellType.STAIRS) ||
                 (nextCell.getType() == CellType.CASTLE1) ||
@@ -39,16 +65,12 @@ public class Player extends Actor {
                 (nextCell.getType() == CellType.CASTLE6) ||
                 (nextCell.getType() == CellType.CASTLE7) ||
                 (nextCell.getType() == CellType.CASTLE8)) {
-            updateBackPackTempPocketAccordingToMove(nextCell);
 
             Drawable enemy = nextCell.getCellContent();
             if (enemy instanceof Actor){
                 attack((Actor) enemy);
             }
-
-            this.getCell().setCellContent(null);
-            nextCell.setCellContent(this);
-            this.setCell(nextCell);
+            playerMove(nextCell);
         }
     }
 
@@ -57,7 +79,15 @@ public class Player extends Actor {
             return;
         }
         if (getDoorCellIfCloseTo() == null){ return; }
-
+        try {
+            PlayMusic.playMusic("src/main/resources/music/door.wav", 70.0f);
+        } catch (UnsupportedAudioFileException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (LineUnavailableException e) {
+            e.printStackTrace();
+        }
         Item key = backpack.getItemFromBackpack("key");
         backpack.removeItem(key);
         getDoorCellIfCloseTo().setType(CellType.DOOROPEN);
@@ -113,8 +143,19 @@ public class Player extends Actor {
     public void healthUp(){
         if(this.backpack.containItemType("cheese")){
             Item cheese = this.backpack.getItemFromBackpack("cheese");
-            this.setHealth(this.getHealth() + cheese.getHealthUpper());
+            if (this.getHealth() < 10){
+                this.setHealth(cheese.getHealthUp());
+            }
             this.backpack.removeItem(cheese);
+            try {
+                PlayMusic.playMusic("src/main/resources/music/eat.wav", 80.0f);
+            } catch (UnsupportedAudioFileException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            } catch (LineUnavailableException e) {
+                e.printStackTrace();
+            }
         }
     }
 

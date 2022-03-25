@@ -12,29 +12,35 @@ import java.io.InputStream;
 import java.util.Scanner;
 
 public class MapLoader {
-    private static int flag = 0;
-   // private static Player player = new Player(new Cell(new GameMap(5,5,CellType.EMPTY),1,1,CellType.FLOOR));
+    public static int flag = 0;
+    // private static Player player = new Player(new Cell(new GameMap(5,5,CellType.EMPTY),1,1,CellType.FLOOR));
     private static Player player;
 
-    public MapLoader() {}
+    public MapLoader() {
+    }
 
     public static GameMap loadMap(String playerName) {
         String[] maps = {"/map.txt", "/map1.txt", "/map2.txt"};
+        if (flag==3) {
+            flag = 0;
+        }
         InputStream is = MapLoader.class.getResourceAsStream(maps[flag]);
+
         flag++;
+
         Scanner scanner = new Scanner(is);
         int width = scanner.nextInt();// /2
         int height = scanner.nextInt();// /2
         scanner.nextLine();
         GameMap map = new GameMap(width, height, CellType.EMPTY);
 
-        for(int y = 0; y < height; ++y) {
+        for (int y = 0; y < height; ++y) {
             String line = scanner.nextLine();
 
-            for(int x = 0; x < width; ++x) {
+            for (int x = 0; x < width; ++x) {
                 if (x < line.length()) {
                     Cell cell = map.getCell(x, y);
-                    switch(line.charAt(x)) {
+                    switch (line.charAt(x)) {
                         case ' ':
                             cell.setType(CellType.EMPTY);
                             break;
@@ -145,7 +151,7 @@ public class MapLoader {
                             break;
                         case '@':
                             cell.setType(CellType.FLOOR);
-                            if (flag == 1){
+                            if (flag == 1) {
                                 player = new Player(cell, playerName);
                             } else {
                                 cell.setCellContent(player);
