@@ -26,9 +26,12 @@ public class GameOver {
         Button button2 = new Button("EXIT"); // przycisk
         VBox gameOverGrid = new VBox();
         Label label = new Label(status); // stworzenie nowej etykiety
+        Label labelPlayerName = new Label(playerName); // stworzenie nowej etykiety
         label.setStyle("-fx-font-family: 'Comic Sans MS'; -fx-font-size: 70; -fx-font-weight: bold");
+        labelPlayerName.setStyle("-fx-font-family: 'Comic Sans MS'; -fx-font-size: 70; -fx-font-weight: bold");
         Paint Paint = Color.web("#148ec7");
         label.setTextFill(Paint);
+        labelPlayerName.setTextFill(Paint);
         button1.setStyle("-fx-font-family: 'Comic Sans MS'");
         button1.setTextFill(Paint);
         button2.setStyle("-fx-font-family: 'Comic Sans MS'");
@@ -39,6 +42,7 @@ public class GameOver {
 
 
         gameOverGrid.setBackground(new Background(backk));
+        gameOverGrid.getChildren().add(labelPlayerName);
         gameOverGrid.getChildren().add(label);
         gameOverGrid.getChildren().add(button1);
         gameOverGrid.getChildren().add(button2);
