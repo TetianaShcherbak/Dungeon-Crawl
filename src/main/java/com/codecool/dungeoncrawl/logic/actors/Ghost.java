@@ -22,15 +22,7 @@ public class Ghost extends Actor{
 
     @Override
     public void move(int dx, int dy) {
-        System.out.println("ghost: " + this.getX() + "; " + this.getY());
         Cell nextCell = this.getCell().getNeighbor(dx, dy);
-//        if (nextCell.getActor() instanceof Player){
-//            attack(nextCell.getActor());
-//            if(isDead()){
-//                this.getCell().setCellContent(null);
-//                return;
-//            }
-//        }
         this.getCell().setCellContent(null);
         nextCell.setCellContent(this);
         this.setCell(nextCell);

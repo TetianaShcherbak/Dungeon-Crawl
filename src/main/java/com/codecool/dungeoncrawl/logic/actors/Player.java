@@ -5,10 +5,7 @@
 
 package com.codecool.dungeoncrawl.logic.actors;
 
-import com.codecool.dungeoncrawl.logic.BackPack;
-import com.codecool.dungeoncrawl.logic.Cell;
-import com.codecool.dungeoncrawl.logic.CellType;
-import com.codecool.dungeoncrawl.logic.GameMap;
+import com.codecool.dungeoncrawl.logic.*;
 import com.codecool.dungeoncrawl.logic.items.Cheese;
 import com.codecool.dungeoncrawl.logic.items.Item;
 
@@ -30,6 +27,7 @@ public class Player extends Actor {
     @Override
     public void move(int dx, int dy) {
         Cell nextCell = this.getCell().getNeighbor(dx, dy);
+
         if ((nextCell.getType() == CellType.FLOOR) ||
                 (nextCell.getType() == CellType.DOOROPEN) ||
                 (nextCell.getType() == CellType.STAIRS) ||
@@ -42,17 +40,10 @@ public class Player extends Actor {
                 (nextCell.getType() == CellType.CASTLE7) ||
                 (nextCell.getType() == CellType.CASTLE8)) {
             updateBackPackTempPocketAccordingToMove(nextCell);
-            System.out.println("nextCell: " + nextCell.getX() + "; " + nextCell.getY());
-            System.out.println("player: " + this.getX() + "; " + this.getY());
 
-            System.out.println(nextCell.getActor());
-            if (nextCell.getActor() instanceof Actor){
-                attack(nextCell.getActor());
-                if(isDead()){
-                    this.getCell().setCellContent(null);
-                    System.out.println("Game over!");
-                    return;
-                }
+            Drawable enemy = nextCell.getCellContent();
+            if (enemy instanceof Actor){
+                attack((Actor) enemy);
             }
 
             this.getCell().setCellContent(null);
@@ -70,6 +61,35 @@ public class Player extends Actor {
         Item key = backpack.getItemFromBackpack("key");
         backpack.removeItem(key);
         getDoorCellIfCloseTo().setType(CellType.DOOROPEN);
+    }
+
+    private void attack(Actor enemy){
+        int health = this.getHealth();
+        int attackPower = this.getAttackPower();
+        int shield = this.getShield();
+        System.out.println(this.getTileName() + ": health = "+ health + "; attack = " + attackPower + "; shield = " + shield);
+
+        int enemyHealth = enemy.getHealth();
+        int enemyAttackPower = enemy.getAttackPower();
+        int enemyShield = enemy.getShield();
+        System.out.println(enemy.getTileName() + ": health = "+ enemyHealth + "; attack = " + enemyAttackPower + "; shield = " + enemyShield);
+
+        int shieldDifference = Math.max(shield - enemyAttackPower, 0);
+        int healthDifference = (shieldDifference == 0) ? (health - enemyAttackPower) : (health + shieldDifference - enemyAttackPower);
+        this.setHealth(healthDifference);
+        if (healthDifference <= 0) {
+            System.out.println("Game over!");
+        }
+        System.out.println(this.getTileName() + ": newHealth = "+ this.getHealth() + "; newAttack = " + this.getAttackPower() + "; newShield = " + this.getShield());
+
+        int enemyShieldDifference = Math.max(enemyShield - attackPower, 0);
+        int enemyHealthDifference = (enemyShieldDifference == 0) ? (enemyHealth - attackPower) : (enemyHealth + enemyShieldDifference - attackPower);
+        enemy.setHealth(enemyHealthDifference);
+        if (enemyHealthDifference <= 0) {
+            //enemy.getCell().setCellContent(null);
+        }
+        System.out.println(enemy.getTileName() + ": newHealth = "+ enemy.getHealth() + "; newAttack = " + enemy.getAttackPower() + "; newShield = " + enemy.getShield());
+
     }
 
     private Cell getDoorCellIfCloseTo(){

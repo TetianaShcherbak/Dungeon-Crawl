@@ -13,7 +13,6 @@ public class Goblin extends Actor {
         this.setHealth(1);
         this.setAttackPower(1);
         this.setShield(0);
-        System.out.println("goblin: " + this.getX() + "; " + this.getY());
     }
 
     @Override
