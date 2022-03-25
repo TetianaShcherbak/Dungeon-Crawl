@@ -5,9 +5,11 @@
 
 package com.codecool.dungeoncrawl.logic.actors;
 
+import com.codecool.dungeoncrawl.GameOver;
 import com.codecool.dungeoncrawl.logic.*;
 import com.codecool.dungeoncrawl.logic.items.Cheese;
 import com.codecool.dungeoncrawl.logic.items.Item;
+import javafx.stage.Stage;
 
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
@@ -38,7 +40,7 @@ public class Player extends Actor {
     }
 
     @Override
-    public void move(int dx, int dy) {
+    public void move(int dx, int dy, Stage primaryStage) {
         try {
             PlayMusic.playMusic("src/main/resources/music/step.wav", 80.0f);
         } catch (UnsupportedAudioFileException e) {
@@ -50,7 +52,6 @@ public class Player extends Actor {
         }
         Cell nextCell = this.getCell().getNeighbor(dx, dy);
 
-        if ((nextCell.getType() == CellType.FLOOR) ||
         if (developers.isDeveloperName()){
             playerMove(nextCell);
         }
@@ -68,7 +69,7 @@ public class Player extends Actor {
 
             Drawable enemy = nextCell.getCellContent();
             if (enemy instanceof Actor){
-                attack((Actor) enemy);
+                attack((Actor) enemy, primaryStage);
             }
             playerMove(nextCell);
         }
@@ -93,7 +94,7 @@ public class Player extends Actor {
         getDoorCellIfCloseTo().setType(CellType.DOOROPEN);
     }
 
-    private void attack(Actor enemy){
+    private void attack(Actor enemy, Stage primaryStage){
         int health = this.getHealth();
         int attackPower = this.getAttackPower();
         int shield = this.getShield();
@@ -108,7 +109,8 @@ public class Player extends Actor {
         int healthDifference = (shieldDifference == 0) ? (health - enemyAttackPower) : (health + shieldDifference - enemyAttackPower);
         this.setHealth(healthDifference);
         if (healthDifference <= 0) {
-            System.out.println("Game over!");
+            GameOver gameOver = new GameOver();
+            gameOver.start(primaryStage, "Dear Player ", "YOU ARE DEAD");
         }
         System.out.println(this.getTileName() + ": newHealth = "+ this.getHealth() + "; newAttack = " + this.getAttackPower() + "; newShield = " + this.getShield());
 
@@ -116,7 +118,9 @@ public class Player extends Actor {
         int enemyHealthDifference = (enemyShieldDifference == 0) ? (enemyHealth - attackPower) : (enemyHealth + enemyShieldDifference - attackPower);
         enemy.setHealth(enemyHealthDifference);
         if (enemyHealthDifference <= 0) {
-            //enemy.getCell().setCellContent(null);
+            enemy.getCell().setCellContent(null);
+            enemy.getCell().getGameMap().removeNPC(enemy);
+            //@@@@
         }
         System.out.println(enemy.getTileName() + ": newHealth = "+ enemy.getHealth() + "; newAttack = " + enemy.getAttackPower() + "; newShield = " + enemy.getShield());
 
@@ -144,7 +148,7 @@ public class Player extends Actor {
         if(this.backpack.containItemType("cheese")){
             Item cheese = this.backpack.getItemFromBackpack("cheese");
             if (this.getHealth() < 10){
-                this.setHealth(cheese.getHealthUp());
+                this.setHealth(this.getHealth() + cheese.getHealthUpper());
             }
             this.backpack.removeItem(cheese);
             try {

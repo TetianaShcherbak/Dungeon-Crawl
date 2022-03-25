@@ -2,6 +2,7 @@ package com.codecool.dungeoncrawl.logic.actors;
 
 import com.codecool.dungeoncrawl.logic.Cell;
 import com.codecool.dungeoncrawl.logic.CellType;
+import javafx.stage.Stage;
 
 public class Goblin extends Actor {
     private int goblinDirection;
@@ -16,21 +17,21 @@ public class Goblin extends Actor {
     }
 
     @Override
-    public void move(int dx, int dy) {
+    public void move(int dx, int dy, Stage primaryStage) {
         Cell nextCell = this.getCell().getNeighbor(dx, dy);
         this.getCell().setCellContent(null);
         nextCell.setCellContent(this);
         this.setCell(nextCell);
     }
 
-    public void moveGoblin(){
+    public void moveGoblin(Stage primaryStage){
         int goblinDirection = this.goblinDirection;
         int[]direction = directions[goblinDirection];
         int x = direction[0];
         int y = direction[1];
         Cell nextCell = this.getCell().getNeighbor(x, y);
         if (nextCell.getType() == CellType.FLOOR && nextCell.getCellContent() == null) {
-            move(x, y);
+            move(x, y, primaryStage);
 
         }
         else {
@@ -55,7 +56,7 @@ public class Goblin extends Actor {
                 y = direction[1];
                 nextCell = this.getCell().getNeighbor(x, y);
             }
-            move(x,y);
+            move(x,y, primaryStage);
         }
         }
 

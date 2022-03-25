@@ -9,6 +9,7 @@ import com.codecool.dungeoncrawl.logic.Cell;
 import com.codecool.dungeoncrawl.logic.CellType;
 import com.codecool.dungeoncrawl.logic.Drawable;
 import com.codecool.dungeoncrawl.logic.GameMap;
+import javafx.stage.Stage;
 
 public abstract class Actor implements Drawable {
     private Cell cell;
@@ -21,7 +22,7 @@ public abstract class Actor implements Drawable {
         this.cell.setCellContent(this);
     }
 
-    public void move(int dx, int dy) {}
+    public void move(int dx, int dy, Stage primaryStage) {}
 
     public int getHealth() {
         return this.health;

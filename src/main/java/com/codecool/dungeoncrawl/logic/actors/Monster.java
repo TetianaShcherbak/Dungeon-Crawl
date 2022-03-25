@@ -2,20 +2,21 @@ package com.codecool.dungeoncrawl.logic.actors;
 
 import com.codecool.dungeoncrawl.logic.Cell;
 import com.codecool.dungeoncrawl.logic.CellType;
+import javafx.stage.Stage;
 
 public class Monster extends Actor {
     public Monster(Cell cell) {
         super(cell);
-        this.setHealth(1); //3
-        this.setAttackPower(1); //2
-        this.setShield(0);  //2
+        this.setHealth(3);
+        this.setAttackPower(2);
+        this.setShield(2);
     }
 
     public String getTileName() {
         return "monster";
     }
 
-    private boolean searchPlayerUp(Cell cell) {
+    private boolean searchPlayerUp(Cell cell, Stage primaryStage) {
         int start = cell.getY() - 1;
         int stop = 3;
         while (stop > 0) {
@@ -33,7 +34,7 @@ public class Monster extends Actor {
         return false;
     }
 
-    private boolean searchPlayerDown(Cell cell) {
+    private boolean searchPlayerDown(Cell cell, Stage primaryStage) {
         int start = cell.getY() + 1;
         int stop = 3;
         while (stop > 0) {
@@ -51,7 +52,7 @@ public class Monster extends Actor {
         return false;
     }
 
-    private boolean searchPlayerRight(Cell cell) {
+    private boolean searchPlayerRight(Cell cell, Stage primaryStage) {
         int start = cell.getX() + 1;
         int stop = 1;
         while (stop < 4) {
@@ -61,10 +62,10 @@ public class Monster extends Actor {
                 }
             } catch (Exception ex){}
             Cell neighbor = cell.getNeighbor(stop, 0);
-            if (wallChase(neighbor)) {
+            if (wallChase(neighbor, primaryStage)) {
                 return false;
             }
-            if (searchPlayerUp(neighbor) || searchPlayerDown(neighbor)) {
+            if (searchPlayerUp(neighbor, primaryStage) || searchPlayerDown(neighbor, primaryStage)) {
                 return true;
             }
             start += 1;
@@ -74,7 +75,7 @@ public class Monster extends Actor {
         return false;
     }
 
-    private boolean searchPlayerLeft(Cell cell) {
+    private boolean searchPlayerLeft(Cell cell, Stage primaryStage) {
         int start = cell.getX() - 1;
         int stop = 1;
         while (stop < 4) {
@@ -84,10 +85,10 @@ public class Monster extends Actor {
                 }
             }catch (Exception ex){}
             Cell neighbor = cell.getNeighbor(-stop, 0);
-            if (wallChase(neighbor)) {
+            if (wallChase(neighbor, primaryStage)) {
                 return false;
             }
-            if (searchPlayerUp(neighbor) || searchPlayerDown(neighbor)) {
+            if (searchPlayerUp(neighbor, primaryStage) || searchPlayerDown(neighbor, primaryStage)) {
                 return true;
             }
             start -= 1;
@@ -97,22 +98,22 @@ public class Monster extends Actor {
         return false;
     }
 
-    private boolean wallChase(Cell neighbor) {
-        if (searchPlayerUp(neighbor) && (neighbor.getType() != CellType.FLOOR
+    private boolean wallChase(Cell neighbor, Stage primaryStage) {
+        if (searchPlayerUp(neighbor, primaryStage) && (neighbor.getType() != CellType.FLOOR
                 || (neighbor.getType() == CellType.FLOOR && neighbor.getCellContent() != null))) {
-            move(0, -1);
+            move(0, -1, primaryStage);
             return true;
         }
-        if (searchPlayerDown(neighbor) && (neighbor.getType() != CellType.FLOOR
+        if (searchPlayerDown(neighbor, primaryStage) && (neighbor.getType() != CellType.FLOOR
                 || (neighbor.getType() == CellType.FLOOR && neighbor.getCellContent() != null))) {
-            move(0, 1);
+            move(0, 1, primaryStage);
             return true;
         }
         return false;
     }
 
     @Override
-    public void move(int dx, int dy) {
+    public void move(int dx, int dy, Stage primaryStage) {
         Cell nextCell = this.getCell().getNeighbor(dx, dy);
         if ((nextCell.getType() == CellType.FLOOR) && nextCell.getCellContent() == null) {
             this.getCell().setCellContent(null);
@@ -121,15 +122,15 @@ public class Monster extends Actor {
         }
     }
 
-    public void chaseMove() {
-        if (searchPlayerDown(getCell())) {
-            move(0, 1);
-        } else if (searchPlayerUp(getCell())) {
-            move(0, -1);
-        } else if (searchPlayerRight(getCell())) {
-            move(1, 0);
-        } else if (searchPlayerLeft(getCell())) {
-            move(-1, 0);
+    public void chaseMove(Stage primaryStage) {
+        if (searchPlayerDown(getCell(), primaryStage)) {
+            move(0, 1, primaryStage);
+        } else if (searchPlayerUp(getCell(), primaryStage)) {
+            move(0, -1, primaryStage);
+        } else if (searchPlayerRight(getCell(), primaryStage)) {
+            move(1, 0, primaryStage);
+        } else if (searchPlayerLeft(getCell(), primaryStage)) {
+            move(-1, 0,  primaryStage);
         }
     }
 }

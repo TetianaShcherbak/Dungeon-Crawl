@@ -83,19 +83,19 @@ public class Main {
     private void onKeyPressed(KeyEvent keyEvent, Stage primaryStage){
         switch (keyEvent.getCode()) {
             case UP:
-                map.getPlayer().move(0, -1);
+                map.getPlayer().move(0, -1, primaryStage);
                 refresh(primaryStage);
                 break;
             case DOWN:
-                map.getPlayer().move(0, 1);
+                map.getPlayer().move(0, 1, primaryStage);
                 refresh(primaryStage);
                 break;
             case LEFT:
-                map.getPlayer().move(-1, 0);
+                map.getPlayer().move(-1, 0, primaryStage);
                 refresh(primaryStage);
                 break;
             case RIGHT:
-                map.getPlayer().move(1, 0);
+                map.getPlayer().move(1, 0, primaryStage);
                 refresh(primaryStage);
                 break;
             case E:
@@ -117,7 +117,7 @@ public class Main {
 
     private void refresh(Stage primaryStage) {
         ui.getChildren().clear();
-        ai.moveNpc();
+        ai.moveNpc(primaryStage);
 //        context.setFill(Color.BLACK);
         context.fillRect(0, 0, canvas.getWidth(), canvas.getHeight());
         for (int x = 0; x < 43; x++) {

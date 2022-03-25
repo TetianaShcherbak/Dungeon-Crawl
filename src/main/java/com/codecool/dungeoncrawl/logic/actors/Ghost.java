@@ -2,6 +2,7 @@ package com.codecool.dungeoncrawl.logic.actors;
 
 import com.codecool.dungeoncrawl.logic.Cell;
 import com.codecool.dungeoncrawl.logic.CellType;
+import javafx.stage.Stage;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,7 +22,7 @@ public class Ghost extends Actor{
     }
 
     @Override
-    public void move(int dx, int dy) {
+    public void move(int dx, int dy, Stage primaryStage) {
         Cell nextCell = this.getCell().getNeighbor(dx, dy);
         this.getCell().setCellContent(null);
         nextCell.setCellContent(this);
@@ -35,7 +36,7 @@ public class Ghost extends Actor{
         moves.add(new int[]{1, 0});
     }
 
-    public void randomMove(){
+    public void randomMove(Stage primaryStage){
         while (true){
             int move = random.nextInt(4);
             int dx = moves.get(move)[0];
@@ -48,7 +49,7 @@ public class Ghost extends Actor{
             if (((nextCell.getType() == CellType.FLOOR) && nextCell.getCellContent() == null)
                     || (nextCell.getType() == CellType.WALL) || (nextCell.getType() == CellType.OAKS)
                     || (nextCell.getType() == CellType.PINES) || (nextCell.getType() == CellType.RIVERBODY)){
-                move(dx, dy);
+                move(dx, dy, primaryStage);
                 break;
             }
         }

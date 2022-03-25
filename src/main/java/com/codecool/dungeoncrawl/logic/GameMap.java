@@ -84,4 +84,18 @@ public class GameMap {
     public ArrayList<Monster> getMonsters() {
         return monsters;
     }
+
+    public void removeNPC(Drawable npc) {
+        if (npc instanceof Goblin){
+            goblins.remove(npc);
+        }
+
+        if (npc instanceof Ghost){
+            ghosts.remove(npc);
+        }
+
+        if (npc instanceof Monster){
+            monsters.remove(npc);
+        }
+    }
 }
