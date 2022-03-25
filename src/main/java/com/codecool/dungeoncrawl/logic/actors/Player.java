@@ -149,6 +149,9 @@ public class Player extends Actor {
             Item cheese = this.backpack.getItemFromBackpack("cheese");
             if (this.getHealth() < 10){
                 this.setHealth(this.getHealth() + cheese.getHealthUpper());
+                if (this.getHealth() > 10){
+                    this.setHealth(10);
+                }
             }
             this.backpack.removeItem(cheese);
             try {
