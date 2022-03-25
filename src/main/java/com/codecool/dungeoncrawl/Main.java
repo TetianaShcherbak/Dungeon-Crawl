@@ -169,7 +169,7 @@ public class Main {
         Label name = new Label(playerName);
         ui.add(changeLabelFont("#5f0a8c", name), 1, 1);
 
-        Label newLabel = new Label(String.valueOf(map.getPlayer().getHealth()));
+        Label newLabel = new Label(String.valueOf(map.getPlayer().getHealth()) + "/10");
         ui.add(changeLabelFont("#5f0a8c", newLabel), 1, 0);
     }
 
