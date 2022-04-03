@@ -41,15 +41,8 @@ public class Player extends Actor {
 
     @Override
     public void move(int dx, int dy, Stage primaryStage) {
-        try {
-            PlayMusic.playMusic("src/main/resources/music/step.wav", 80.0f);
-        } catch (UnsupportedAudioFileException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (LineUnavailableException e) {
-            e.printStackTrace();
-        }
+        PlayMusic.setSoundTrack("src/main/resources/music/step.wav", 80.0f);
+
         Cell nextCell = this.getCell().getNeighbor(dx, dy);
 
         if (developers.isDeveloperName()){
@@ -80,15 +73,8 @@ public class Player extends Actor {
             return;
         }
         if (getDoorCellIfCloseTo() == null){ return; }
-        try {
-            PlayMusic.playMusic("src/main/resources/music/door.wav", 70.0f);
-        } catch (UnsupportedAudioFileException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (LineUnavailableException e) {
-            e.printStackTrace();
-        }
+        PlayMusic.setSoundTrack("src/main/resources/music/door.wav", 70.0f);
+
         Item key = backpack.getItemFromBackpack("key");
         backpack.removeItem(key);
         getDoorCellIfCloseTo().setType(CellType.DOOROPEN);
@@ -149,15 +135,7 @@ public class Player extends Actor {
                 }
             }
             this.backpack.removeItem(cheese);
-            try {
-                PlayMusic.playMusic("src/main/resources/music/eat.wav", 80.0f);
-            } catch (UnsupportedAudioFileException e) {
-                e.printStackTrace();
-            } catch (IOException e) {
-                e.printStackTrace();
-            } catch (LineUnavailableException e) {
-                e.printStackTrace();
-            }
+            PlayMusic.setSoundTrack("src/main/resources/music/eat.wav", 80.0f);
         }
     }
 

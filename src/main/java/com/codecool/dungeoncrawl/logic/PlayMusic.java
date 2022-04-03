@@ -5,7 +5,19 @@ import java.io.File;
 import java.io.IOException;
 public class PlayMusic {
 
-    public static void playMusic(String link, float volume) throws UnsupportedAudioFileException, IOException, LineUnavailableException {
+    public static void setSoundTrack(String link, float volume){
+        try {
+            playMusic(link, volume);
+        } catch (UnsupportedAudioFileException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (LineUnavailableException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private static void playMusic(String link, float volume) throws UnsupportedAudioFileException, IOException, LineUnavailableException {
 
         File file = new File(link);
 

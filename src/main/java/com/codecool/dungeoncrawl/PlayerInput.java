@@ -27,7 +27,8 @@ public class PlayerInput extends Application {
 
     @Override
     public void start(Stage stage) throws UnsupportedAudioFileException, LineUnavailableException, IOException {
-        PlayMusic.playMusic("src/main/resources/music/start.wav", 50.0f);
+        PlayMusic.setSoundTrack("src/main/resources/music/start.wav", 50.0f);
+
         VBox ui = new VBox();
         TextField playerName = new TextField(); // pole na wpisanie tekstu
         playerName.setStyle("-fx-font-family: 'Comic Sans MS'; -fx-text-fill: #679e02");

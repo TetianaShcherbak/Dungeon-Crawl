@@ -22,15 +22,8 @@ public class BackPack {
     public void addItemToBackPack(){
         if (tempPocket != null){
             if (backpack.size() < size){
-                try {
-                    PlayMusic.playMusic("src/main/resources/music/dropinbag.wav", 80.0f);
-                } catch (UnsupportedAudioFileException e) {
-                    e.printStackTrace();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                } catch (LineUnavailableException e) {
-                    e.printStackTrace();
-                }
+                PlayMusic.setSoundTrack("src/main/resources/music/dropinbag.wav", 80.0f);
+
                 backpack.add(tempPocket);
                 updatePlayerParameters(tempPocket);
                 owner.setTileName();

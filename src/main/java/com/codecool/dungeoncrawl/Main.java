@@ -145,15 +145,8 @@ public class Main {
         }
         showInventaryBar();
         if (GameMap.nextMap()){
-            try {
-                PlayMusic.playMusic("src/main/resources/music/teleport.wav", 80.0f);
-            } catch (UnsupportedAudioFileException e) {
-                e.printStackTrace();
-            } catch (IOException e) {
-                e.printStackTrace();
-            } catch (LineUnavailableException e) {
-                e.printStackTrace();
-            }
+            PlayMusic.setSoundTrack("src/main/resources/music/teleport.wav", 80.0f);
+
             map = MapLoader.loadMap(playerName);
             ai = new NpcMovement(map);
             refresh(primaryStage);
@@ -245,15 +238,8 @@ public class Main {
     private void isWin(Stage primaryStage){
         Player player = map.getPlayer();
         if (player.backpack.containItemType("crown")){
-            try {
-                PlayMusic.playMusic("src/main/resources/music/win.wav", 80.0f);
-            } catch (UnsupportedAudioFileException e) {
-                e.printStackTrace();
-            } catch (IOException e) {
-                e.printStackTrace();
-            } catch (LineUnavailableException e) {
-                e.printStackTrace();
-            }
+            PlayMusic.setSoundTrack("src/main/resources/music/win.wav", 80.0f);
+
             try {
                 Thread.sleep(1000);
             } catch (InterruptedException e) {
