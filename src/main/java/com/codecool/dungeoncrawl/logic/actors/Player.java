@@ -98,12 +98,10 @@ public class Player extends Actor {
         int health = this.getHealth();
         int attackPower = this.getAttackPower();
         int shield = this.getShield();
-        System.out.println(this.getTileName() + ": health = "+ health + "; attack = " + attackPower + "; shield = " + shield);
 
         int enemyHealth = enemy.getHealth();
         int enemyAttackPower = enemy.getAttackPower();
         int enemyShield = enemy.getShield();
-        System.out.println(enemy.getTileName() + ": health = "+ enemyHealth + "; attack = " + enemyAttackPower + "; shield = " + enemyShield);
 
         int shieldDifference = Math.max(shield - enemyAttackPower, 0);
         int healthDifference = (shieldDifference == 0) ? (health - enemyAttackPower) : (health + shieldDifference - enemyAttackPower);
@@ -112,7 +110,6 @@ public class Player extends Actor {
             GameOver gameOver = new GameOver();
             gameOver.start(primaryStage, "Dear Player ", "YOU ARE DEAD");
         }
-        System.out.println(this.getTileName() + ": newHealth = "+ this.getHealth() + "; newAttack = " + this.getAttackPower() + "; newShield = " + this.getShield());
 
         int enemyShieldDifference = Math.max(enemyShield - attackPower, 0);
         int enemyHealthDifference = (enemyShieldDifference == 0) ? (enemyHealth - attackPower) : (enemyHealth + enemyShieldDifference - attackPower);
@@ -120,9 +117,7 @@ public class Player extends Actor {
         if (enemyHealthDifference <= 0) {
             enemy.getCell().setCellContent(null);
             enemy.getCell().getGameMap().removeNPC(enemy);
-            //@@@@
         }
-        System.out.println(enemy.getTileName() + ": newHealth = "+ enemy.getHealth() + "; newAttack = " + enemy.getAttackPower() + "; newShield = " + enemy.getShield());
 
     }
 

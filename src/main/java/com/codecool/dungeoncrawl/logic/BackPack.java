@@ -57,11 +57,9 @@ public class BackPack {
     }
 
     private void updatePlayerParameters(Item item){
-        int health = owner.getHealth();
         int attackPower = owner.getAttackPower();
         int shield = owner.getShield();
 
-        owner.setHealth(health + item.getHealthUpper());
         owner.setAttackPower(attackPower + item.getAttackUpper());
         owner.setShield(shield + item.getShieldUpper());
     }
