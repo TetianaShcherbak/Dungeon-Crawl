@@ -21,8 +21,10 @@ Collect keys to unlock new levels. Only if you find your lost crown - you will b
 
 ## Developers team
 
-- **Michał Rogalski**
-- **Tetiana Shcherbak**
-- **Justyna Zaczyk**
-- **Vladyslav Shyian**
+* [Michał Rogalski](https://github.com/MichalRogalski22)
+* [Tetiana Shcherbak](https://github.com/TetianaShcherbak)
+* [Justyna Zaczyk](https://github.com/justyna-eevee)
+* [Vladyslav Shyian](https://github.com/mrshyian)
+
+<img width="1016" alt="Zrzut ekranu 2022-04-25 o 16 21 07" src="https://user-images.githubusercontent.com/89380134/165109402-987a79b3-9302-4382-9e6f-24496f57c2aa.png">
 
