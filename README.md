@@ -9,21 +9,20 @@ Collect keys to unlock new levels. Only if you find your lost crown - you will b
 
 ### Backend technologies:
 
-**
-- Java 17
-- PostgreSQL
-- JSON
-**
+- **Java 17**
+- **PostgreSQL**
+- **JSON**
+
 
 ### Frontend technologies:
-**
-- Java FX
-**
+
+- **Java FX**
+
 
 ## Developers team
-**
-- Michał Rogalski
-- Tetiana Shcherbak
-- Justyna Zaczyk
-- Vladyslav Shyian
-**
+
+- **Michał Rogalski**
+- **Tetiana Shcherbak**
+- **Justyna Zaczyk**
+- **Vladyslav Shyian**
+
